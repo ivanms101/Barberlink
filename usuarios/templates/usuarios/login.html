@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <meta charset="UTF-8" />
+    <title>Barberlink - LogIn</title>
+  </head>
+  <body>
+    <div class="contenedor-login">
+      <h1>Iniciar sesion</h1>
+      <form method="post">
+        {% csrf_token %}
+        <label for="documento">Documento:</label>
+        <input type="text" id="documento" name="documento" />
+        <br /><br />
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" />
+        <br /><br />
+        <button type="submit">Ingresar</button>
+      </form>
+    </div>
+  </body>
+</html>

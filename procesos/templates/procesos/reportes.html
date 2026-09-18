@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}
+    Barberlink - Reportes
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/reportes.css' %}">
+{% endblock %}
+{% block contenido %}
+    <h1>Gestión de reportes</h1>
+    <p>Aquí se generarán los reportes del sistema.</p>
+    <a class="volver" href="{% url 'inicio' %}">Volver</a>
+{% endblock %}

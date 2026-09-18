@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}
+    Barberlink - Pagos
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/pagos.css' %}">
+{% endblock %}
+{% block contenido %}
+    <h1>Gestión de pagos</h1>
+    <p>Aquí se gestionarán los pagos de la barbería.</p>
+    <a class="volver" href="{% url 'inicio' %}">Volver</a>
+{% endblock %}
