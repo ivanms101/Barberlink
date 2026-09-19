@@ -41,3 +41,17 @@ tbody tr:hover{
 .volver-btn:hover{
     background-color: #374151;
 }
+
+.crear_usuario{
+    display: inline-block;
+    margin: 15px 0 20px 0;
+    padding: 10px 16px;
+    text-decoration: none;
+    background-color: #1f2937;
+    color: white;
+    border-radius: 6px;
+}
+
+.crear_usuario:hover{
+    background-color: #374151;
+}
