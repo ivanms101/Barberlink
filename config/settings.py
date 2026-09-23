@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'servicios',
     'usuarios',
     'reservas',
@@ -45,6 +46,9 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = "usuarios.Usuario"
+AUTHENTICATION_BACKENDS = [
+    "usuarios.authentication.UsuarioBackend",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

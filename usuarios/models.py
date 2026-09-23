@@ -40,6 +40,7 @@ class Usuario(AbstractBaseUser):
     usua_cor = models.CharField(max_length=100, null=True, db_column="USUA_COR")
     password = models.CharField(max_length=255, db_column="USUA_PASS")
     usua_rol = models.ForeignKey(Rol,db_column="USUA_ROL_ID",on_delete=models.DO_NOTHING)
+    usua_activo = models.BooleanField(db_column="USUA_ACTIVO", default=True)
 
     #Conexion con UsuarioManager
     objects = UsuarioManager()

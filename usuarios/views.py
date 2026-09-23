@@ -3,6 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Usuario, Rol
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from .permissions import IsAdminRole
+from .serializers import UsuarioSerializer, UsuarioCreateSerializer, UsuarioPasswordSerializer, UsuarioEstadoSerializer
 
 def prueba(request):
     return HttpResponse(request.method)
@@ -19,7 +25,7 @@ def login_view(request):
         if usuario is not None:
             login(request, usuario)
             return redirect("inicio")
-        return HttpResponse("Credenciales incorrectas")
+        return render(request, "usuarios/login.html", {"error":"Documento o contraseña incorrectos"})
     return render(request, "usuarios/login.html")
 
 def logout_view(request):
@@ -63,3 +69,36 @@ def crear_usuario(request):
         return redirect("usuarios")
     roles = Rol.objects.all()
     return render(request, "usuarios/crear_usuario.html", {"roles":roles})
+
+class UsuarioViewSet(viewsets.ModelViewSet):
+    http_method_names = ["get", "post", "patch", "head", "options"]
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+    permission_classes = [IsAuthenticated, IsAdminRole]
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return UsuarioCreateSerializer
+        return UsuarioSerializer
+
+    @action(detail=True, methods=["post"], url_path="password")
+    def cambiar_password(self, request, pk=None):
+        usuario = self.get_object()
+        serializer = UsuarioPasswordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            usuario.set_password(serializer.validated_data["password"])
+            usuario.save()
+            return Response({"detail":"Contraseña actualizada."})
+        return Response(serializer.errors, status=400)
+
+    @action(detail=True, methods=["patch"], url_path="estado")
+    def cambiar_estado(self, request, pk=None):
+        usuario = self.get_object()
+        serializer = UsuarioEstadoSerializer(data=request.data)
+
+        if serializer.is_valid():
+            usuario.usua_activo = serializer.validated_data["usua_activo"]
+            usuario.save()
+            return Response({"detail":"Estado actualizado"})
+        return Response(serializer.errors, status=400)

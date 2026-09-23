@@ -42,3 +42,12 @@ body{
 .contenedor-login button:hover{
     background-color: #374151;
 }
+
+.error{
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    text-align: center;
+}

@@ -9,6 +9,9 @@
   <body>
     <div class="contenedor-login">
       <h1>Iniciar sesion</h1>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
       <form method="post">
         {% csrf_token %}
         <label for="documento">Documento:</label>

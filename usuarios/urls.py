@@ -1,6 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from procesos import views as procesos_views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register("api/usuarios", views.UsuarioViewSet, basename="usuarios")
 
 urlpatterns =[
     path("prueba/", views.prueba, name="prueba"),
@@ -9,5 +13,6 @@ urlpatterns =[
     path("logout/", views.logout_view, name="logout"),
     path("administracion/", views.administracion, name="administracion"),
     path("usuarios/", views.usuarios, name="usuarios"),
-    path("usuarios/crear/", views.crear_usuario, name="crear_usuario")
+    path("usuarios/crear/", views.crear_usuario, name="crear_usuario"),
+    path("", include(router.urls)),
 ]
