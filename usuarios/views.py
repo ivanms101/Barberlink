@@ -41,11 +41,14 @@ def administracion(request):
 
 @login_required
 def usuarios(request):
-    usuarios = Usuario.objects.all()
+    if request.user.usua_rol.rol_nomb != "admin":
+        return HttpResponse("No tiene acceso a esa funcion")
     return render(request, "usuarios/usuarios.html", {"usuarios":usuarios})
 
 @login_required
 def crear_usuario(request):
+    if request.user.usua_rol.rol_nomb != "admin":
+        return HttpResponse("No tiene acceso a esa funcion")
     if request.method == "POST":
         nombre = request.POST.get("nombre")
         tipo_documento = request.POST.get("tipo_documento")
@@ -102,3 +105,18 @@ class UsuarioViewSet(viewsets.ModelViewSet):
             usuario.save()
             return Response({"detail":"Estado actualizado"})
         return Response(serializer.errors, status=400)
+
+@login_required
+def editar_usuario(request, pk):
+    if request.user.usua_rol.rol_nomb !="admin":
+        return HttpResponse("No tiene acceso a esta funcion")
+
+    roles = Rol.objects.all()
+
+    return render(request, "usuarios/editar_usuario.html",{"roles": roles, "pk": pk})
+
+@login_required
+def cambiar_password(request, pk):
+    if request.user.usua_rol.rol_nomb !="admin":
+        return HttpResponse("No tiene acceso a esta funcion")
+    return render(request, "usuarios/cambiar_password.html",{"pk":pk})

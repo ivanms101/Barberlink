@@ -14,10 +14,16 @@ function obtenerCsrfToken(){
     return null;
 }
 
-fetch("/usuarios/api/usuarios/")
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(usuario => {
+function cargarUsuarios(){
+    console.log("cargar usuarios se ejecuto");
+    fetch("/usuarios/api/usuarios/")
+        .then(response => response.json())
+        .then(data=>{
+            console.log(data);
+            const  tabla = document.getElementById("tabla-usuarios");
+            tabla.innerHTML="";
+
+            data.forEach(usuario => {
             const fila = document.createElement("tr");
 
             const celdaId = document.createElement("td");
@@ -62,12 +68,33 @@ fetch("/usuarios/api/usuarios/")
                     body: JSON.stringify({
                         usua_activo: !usuario.usua_activo
                     })
-                });
+                }).then(response=>{
+                    if (response.ok){
+                        cargarUsuarios();
+                    }
+                })
             });
             botonEstado.textContent = "Cambiar estado";
             celdaEstado.appendChild(botonEstado);
             fila.appendChild(celdaEstado);
 
-            document.getElementById("tabla-usuarios").appendChild(fila);
+            const celdaAcciones = document.createElement("td");
+            
+            const enlaceEditar = document.createElement("a");
+            enlaceEditar.textContent = "Editar";
+            enlaceEditar.href= `/usuarios/usuarios/editar/${usuario.usua_id}/`;
+            celdaAcciones.appendChild(enlaceEditar);
+
+            const enlacePassword = document.createElement("a");
+            enlacePassword.textContent = "cambiar contraseña";
+            enlacePassword.href = `/usuarios/usuarios/password/${usuario.usua_id}/`
+            celdaAcciones.appendChild(enlacePassword);
+
+            fila.appendChild(celdaAcciones);
+
+            tabla.appendChild(fila);
         });
     });
+}
+
+cargarUsuarios();

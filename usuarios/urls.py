@@ -14,5 +14,7 @@ urlpatterns =[
     path("administracion/", views.administracion, name="administracion"),
     path("usuarios/", views.usuarios, name="usuarios"),
     path("usuarios/crear/", views.crear_usuario, name="crear_usuario"),
+    path("usuarios/editar/<int:pk>/", views.editar_usuario, name="editar_usuario"),
+    path("usuarios/password/<int:pk>/", views.cambiar_password, name="cambiar_password"),
     path("", include(router.urls)),
 ]
