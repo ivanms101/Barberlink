@@ -7,7 +7,23 @@
     <link rel="stylesheet" href="{% static 'css/reservas.css' %}">
 {% endblock %}
 {% block contenido %}
-    <h1>Gestión de reservas</h1>
-    <p>Aquí se gestionarán las reservas de la barbería.</p>
+    <h1>Agendar cita</h1>
+    <section>
+        <h2>Profesional</h2>
+        <div id="lista-profesionales">
+
+        </div>
+    </section>
+    <section>
+        <h2>Servicio</h2>
+        <div id="lista-servicios">
+
+        </div>
+
+    </section>
     <a class="volver" href="{% url 'inicio' %}">Volver</a>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/reservas.js' %}"></script>
 {% endblock %}
