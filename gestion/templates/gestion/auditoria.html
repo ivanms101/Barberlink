@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Barberlink - Auditoría{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/auditoria.css' %}">
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Auditoría del sistema</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+            <th>Tabla</th>
+            <th>Registro</th>
+            <th>Fecha</th>
+            <th>Observación</th>
+        </tr>
+    </thead>
+
+    <tbody id="lista-auditoria">
+    </tbody>
+</table>
+<a class="volver" href="{% url 'inicio' %}">Volver</a>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/auditoria.js' %}"></script>
+{% endblock %}

@@ -12,13 +12,15 @@
     <h1 class="logo">Barberlink</h1>
     <h2 class="titulo-menu">Menú</h2>
     <nav class="menu">
-      <a href="{% url 'inicio' %}">Inicio</a>
       <a href="{% url 'servicios' %}">Servicios</a>
       <a href="{% url 'reservas' %}">Reservas</a>
       <a href="{% url 'usuarios' %}">Usuarios</a>
       <a href="{% url 'pagos' %}">Pagos</a>
       <a href="{% url 'reportes' %}">Reportes</a>
+      {% if usuario.usua_rol.rol_nomb == "admin" %}
       <a href="{% url 'configuracion' %}">Configuracion</a>
+      <a href="{% url 'auditoria' %}">Auditoría</a>
+      {% endif %}
     </nav>
     <a class="cerrar-sesion" href="{% url 'logout' %}">Cerrar sesión</a>
   </aside>
