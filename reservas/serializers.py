@@ -40,3 +40,12 @@ class ServicioDisponibleSerializer(serializers.ModelSerializer):
             "serv_nomb",
             "serv_tari",
         ]
+
+class ReservaCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reserva
+        fields = [
+            "barbero",
+            "fecha",
+            "hora",
+        ]

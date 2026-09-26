@@ -21,6 +21,25 @@
         </div>
 
     </section>
+    <section>
+        <h2>Fecha</h2>
+        <input type="date" id="fecha-cita">
+    </section>
+    <section>
+        <h2>Horarios disponibles</h2>
+        <div id="lista-horarios">
+
+        </div>
+    </section>
+    <section>
+        <h2>Resumen de la cita</h2>
+        <p>Profesional: <span id="resumen-profesional"></span></p>
+        <p>Servicio: <span id="resumen-servicio"></span></p>
+        <p>Fecha: <span id="resumen-fecha"></span></p>
+        <p>Hora: <span id="resumen-hora"></span></p>
+        <p>Total: <span id="resumen-total"></span></p>
+        <button id="confirmar-cita">Confirmar</button>
+    </section>
     <a class="volver" href="{% url 'inicio' %}">Volver</a>
 {% endblock %}
 
