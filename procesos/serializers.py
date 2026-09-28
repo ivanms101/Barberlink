@@ -34,7 +34,7 @@ class PagoSerializer(serializers.ModelSerializer):
 
 class PagoActualizarSerializer(serializers.ModelSerializer):
     valor = serializers.SerializerMethodField()
-    def get_valo(self,obj):
+    def get_valor(self,obj):
         return obj.reserva.detalles.all()[0].servicio.serv_tari
     class Meta:
         model = Pago

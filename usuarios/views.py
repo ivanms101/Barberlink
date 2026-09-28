@@ -4,11 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Usuario, Rol
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsAdminRole
-from .serializers import UsuarioSerializer, UsuarioCreateSerializer, UsuarioPasswordSerializer, UsuarioEstadoSerializer
+from .serializers import UsuarioSerializer, UsuarioCreateSerializer, UsuarioPasswordSerializer, UsuarioEstadoSerializer, UsuarioRegistroSerializer, UsuarioPerfilSerializer, UsuarioCambioPasswordSerializer
 
 def prueba(request):
     return HttpResponse(request.method)
@@ -120,3 +120,58 @@ def cambiar_password(request, pk):
     if request.user.usua_rol.rol_nomb !="admin":
         return HttpResponse("No tiene acceso a esta funcion")
     return render(request, "usuarios/cambiar_password.html",{"pk":pk})
+
+@api_view(["POST"])
+def registro(request):
+        serializer = UsuarioRegistroSerializer(data=request.data)
+        if serializer.is_valid():
+            usuario = serializer.save()
+            return Response(
+                {"detail":"Usuario registrado correctamente"},
+                status=201
+            )
+        return Response(serializer.errors, status=400)
+
+def pagina_registro(request):
+    return render(request, "usuarios/registro.html")
+
+@api_view(["GET", "PATCH"])
+@permission_classes([IsAuthenticated])
+def perfil(request):
+    usuario = request.user
+    if request.method == "GET":
+        serializer = UsuarioPerfilSerializer(usuario)
+        return Response(serializer.data)
+    
+    serializer = UsuarioPerfilSerializer(
+        usuario,
+        data=request.data,
+        partial=True
+    )
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def cambiar_password_perfil(request):
+    usuario = request.user
+    serializer = UsuarioCambioPasswordSerializer(
+        data=request.data,
+        context={"usuario":usuario}
+    )
+    if serializer.is_valid():
+        usuario.set_password(serializer.validated_data["password_nueva"])
+        usuario.save()
+        return Response({
+            "detail": "Contraseña actualizada correctamente"
+        })
+    return Response(serializer.errors, status=400)
+
+@login_required
+def mi_perfil(request):
+    return render(request, "usuarios/perfil.html")
+@login_required
+def perfil_password(request):
+    return render(request, "usuarios/perfil_password.html")

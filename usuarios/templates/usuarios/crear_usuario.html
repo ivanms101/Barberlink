@@ -5,19 +5,31 @@
     Barberlink - Crear usuario
 {% endblock %}
 
+{% block titulo_menu %}
+    Usuarios
+{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'usuarios' %}">Usuarios</a>
+    <a href="{% url 'crear_usuario' %}">Crear usuario</a>
+    <a href="{% url 'inicio' %}">Inicio</a>
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/crear_usuario.css' %}">
 {% endblock %}
 
 {% block contenido %}
     <h1>Crear usuario</h1>
+
     <form id="form-crear-usuario">
         {% csrf_token %}
+
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre">
 
         <label for="tipo_documento">Tipo documento:</label>
-            <select id="tipo_documento" name="tipo_documento">
+        <select id="tipo_documento" name="tipo_documento">
             <option value="CC">CC</option>
             <option value="TI">TI</option>
             <option value="CE">CE</option>
@@ -43,12 +55,13 @@
                 </option>
             {% endfor %}
         </select>
+
         <p id="mensaje-error"></p>
+
         <button type="submit">Crear usuario</button>
     </form>
-
-    <a class="volver" href="{% url 'usuarios' %}">Volver</a>
 {% endblock %}
+
 {% block js %}
     <script src="{% static 'js/crear_usuario.js' %}"></script>
 {% endblock %}

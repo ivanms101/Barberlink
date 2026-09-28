@@ -1,54 +1,71 @@
 {% extends "base.html" %}
 {% load static %}
-{% block titulo %} 
-  Barberlink 
-{% endblock %} 
-{% block css %}
-  <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+
+{% block titulo %}
+    Barberlink
 {% endblock %}
+
+{% block titulo_menu %}
+    Menú
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'inicio' %}">Inicio</a>
+    <a href="{% url 'servicios' %}">Servicios</a>
+    <a href="{% url 'reservas' %}">Reservas</a>
+    <a href="{% url 'perfil' %}">Mi Perfil</a>
+    <a href="{% url 'usuarios' %}">Usuarios</a>
+    <a href="{% url 'pagos' %}">Pagos</a>
+    <a href="{% url 'reportes' %}">Reportes</a>
+
+    {% if usuario.usua_rol.rol_nomb == "admin" %}
+        <a href="{% url 'configuracion' %}">Configuración</a>
+        <a href="{% url 'auditoria' %}">Auditoría</a>
+    {% endif %}
+
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+{% endblock %}
+
 {% block contenido %}
-  <div class="contenedor">
-  <aside class="barra-lateral">
-    <h1 class="logo">Barberlink</h1>
-    <h2 class="titulo-menu">Menú</h2>
-    <nav class="menu">
-      <a href="{% url 'servicios' %}">Servicios</a>
-      <a href="{% url 'reservas' %}">Reservas</a>
-      <a href="{% url 'usuarios' %}">Usuarios</a>
-      <a href="{% url 'pagos' %}">Pagos</a>
-      <a href="{% url 'reportes' %}">Reportes</a>
-      {% if usuario.usua_rol.rol_nomb == "admin" %}
-      <a href="{% url 'configuracion' %}">Configuracion</a>
-      <a href="{% url 'auditoria' %}">Auditoría</a>
-      {% endif %}
-    </nav>
-    <a class="cerrar-sesion" href="{% url 'logout' %}">Cerrar sesión</a>
-  </aside>
-  <main class="contenido">
-    <header class="encabezado">
-      <h1>Bienvenido a Barberlink</h1>
-      <div class="datos-usuario">
+
+<header class="encabezado">
+
+    <h1>Bienvenido a Barberlink</h1>
+
+    <div class="datos-usuario">
         <p>Usuario: {{ usuario.usua_nomb }}</p>
         <p>Rol: {{ usuario.usua_rol.rol_desc }}</p>
-      </div>
-    </header>
-    <section class="dashboard">
-      <h2 class="titulo-resumen">Resumen</h2>
-      <div class="tarjetas">
+    </div>
+
+</header>
+
+<section class="dashboard">
+
+    <h2 class="titulo-resumen">Resumen</h2>
+
+    <div class="tarjetas">
+
         <div class="tarjeta">
-          <h3>Reservas</h3>
-          <p class="valor">0</p>
+            <h3>Reservas</h3>
+            <p class="valor">0</p>
         </div>
+
         <div class="tarjeta">
-          <h3>Servicios</h3>
-          <p class="valor">0</p>
+            <h3>Servicios</h3>
+            <p class="valor">0</p>
         </div>
+
         <div class="tarjeta">
-          <h3>Pagos</h3>
-          <p class="valor">0</p>
+            <h3>Pagos</h3>
+            <p class="valor">0</p>
         </div>
-      </div>
-    </section>
-  </main>
-  </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

@@ -1,33 +1,75 @@
 {% extends "base.html" %}
 {% load static %}
-{% block titulo%}
+
+{% block titulo %}
     Barberlink - Usuarios
 {% endblock %}
+
+{% block titulo_menu %}
+    Usuarios
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'usuarios' %}">Usuarios</a>
+    <a href="{% url 'crear_usuario' %}">Crear usuario</a>
+    <a href="{% url 'inicio' %}">Inicio</a>
+
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 {% endblock %}
+
 {% block contenido %}
-    <h1>Gestion de usuarios</h1>
-    <p>Aqui apareceran los usuarios</p>
-    <a class="crear_usuario" href="{% url 'crear_usuario' %}">Crear usuario</a>
-    <table>
-      <thead>
+
+<h1>Gestión de usuarios</h1>
+<section class="filtros-usuarios">
+
+    <label for="buscar-usuario">Buscar:</label>
+    <input
+        type="text"
+        id="buscar-usuario"
+        placeholder="Nombre o documento"
+    >
+
+    <label for="filtro-rol">Rol:</label>
+    <select id="filtro-rol">
+        <option value="">Todos</option>
+        <option value="1">Administrador</option>
+        <option value="2">Gerente</option>
+        <option value="3">Asistente</option>
+        <option value="4">Empleado</option>
+        <option value="5">Cliente</option>
+    </select>
+
+    <label for="filtro-estado">Estado:</label>
+    <select id="filtro-estado">
+        <option value="">Todos</option>
+        <option value="activo">Activo</option>
+        <option value="inactivo">Inactivo</option>
+    </select>
+
+</section>
+<table>
+    <thead>
         <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Documento</th>
-          <th>Correo</th>
-          <th>Telefono</th>
-          <th>Rol</th>
-          <th>Estado</th>
-          <th>Acciones</th>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Acciones</th>
         </tr>
-      </thead>
-      <tbody id="tabla-usuarios">
-      </tbody>
-    </table>
-    <a class="volver-btn" href="{% url 'inicio' %}">Volver</a>
+    </thead>
+    <tbody id="tabla-usuarios">
+    </tbody>
+</table>
+
 {% endblock %}
-{% block js%}
+
+{% block js %}
     <script src="{% static 'js/usuarios.js' %}"></script>
 {% endblock %}
