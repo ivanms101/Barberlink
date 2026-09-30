@@ -29,16 +29,19 @@ fetch(url)
         console.log("Servicio recibido:", servicio);
         document.getElementById("nombre").value = servicio.serv_nomb;
         document.getElementById("tarifa").value = servicio.serv_tari;
+        document.getElementById("duracion").value = servicio.serv_duracion;
     });
 formulario.addEventListener("submit", function(event){
     event.preventDefault();
 
     const nombre = document.getElementById("nombre").value;
     const tarifa = document.getElementById("tarifa").value;
+    const duracion = document.getElementById("duracion").value;
 
     const datosServicio = {
         serv_nomb: nombre,
-        serv_tari: tarifa
+        serv_tari: tarifa,
+        serv_duracion: duracion
     };
 
     fetch(url,{

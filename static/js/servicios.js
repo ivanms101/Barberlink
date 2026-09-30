@@ -37,6 +37,10 @@ function cargarServicios(){
             celdaTarifa.textContent = servicio.serv_tari;
             fila.appendChild(celdaTarifa);
 
+            const celdaDuracion = document.createElement("td");
+            celdaDuracion.textContent = `${servicio.serv_duracion} min`;
+            fila.appendChild(celdaDuracion);
+
             const celdaEstado = document.createElement("td");
 
             if (servicio.serv_activo){

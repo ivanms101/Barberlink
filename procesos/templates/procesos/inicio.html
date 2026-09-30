@@ -15,11 +15,10 @@
     <a href="{% url 'servicios' %}">Servicios</a>
     <a href="{% url 'reservas' %}">Reservas</a>
     <a href="{% url 'perfil' %}">Mi Perfil</a>
-    <a href="{% url 'usuarios' %}">Usuarios</a>
-    <a href="{% url 'pagos' %}">Pagos</a>
-    <a href="{% url 'reportes' %}">Reportes</a>
-
     {% if usuario.usua_rol.rol_nomb == "admin" %}
+        <a href="{% url 'usuarios' %}">Usuarios</a>
+        <a href="{% url 'pagos' %}">Pagos</a>
+        <a href="{% url 'reportes' %}">Reportes</a>
         <a href="{% url 'configuracion' %}">Configuración</a>
         <a href="{% url 'auditoria' %}">Auditoría</a>
     {% endif %}

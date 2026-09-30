@@ -12,3 +12,21 @@ class Auditoria(models.Model):
     class Meta:
         db_table = "AUDITORIA"
         managed = False
+
+class HorarioDia(models.Model):
+    hord_id = models.BigAutoField(primary_key=True, db_column="HORD_ID")
+    hord_dia = models.IntegerField(db_column="HORD_DIA")
+    hord_activo = models.BooleanField(db_column="HORD_ACTIVO", default=True)
+    class Meta:
+        db_table = "HORARIO_DIA"
+        managed = False
+
+class HorarioFranja(models.Model):
+    horf_id = models.BigAutoField(primary_key=True, db_column="HORF_ID")
+    hord = models.ForeignKey(HorarioDia, on_delete=models.DO_NOTHING, db_column="HORD_ID")
+    horf_hora_inicio = models.TimeField(db_column="HORF_HORA_INICIO")
+    horf_hora_fin = models.TimeField(db_column="HORF_HORA_FIN")
+    horf_activo = models.BooleanField(db_column="HORF_ACTIVO", default=True)
+    class Meta:
+        db_table = "HORARIO_FRANJA"
+        managed = False

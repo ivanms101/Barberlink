@@ -20,10 +20,12 @@ formulario.addEventListener("submit", function(event){
 
     const nombre = document.getElementById("nombre").value;
     const tarifa = document.getElementById("tarifa").value;
+    const duracion = document.getElementById("duracion").value;
 
     const datosServicio ={
         serv_nomb: nombre,
-        serv_tari: tarifa
+        serv_tari: tarifa,
+        serv_duracion: duracion
     }
 
     fetch("/servicios/api/servicios/",{
