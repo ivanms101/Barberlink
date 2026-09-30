@@ -39,6 +39,7 @@ class ServicioDisponibleSerializer(serializers.ModelSerializer):
             "serv_id",
             "serv_nomb",
             "serv_tari",
+            "serv_duracion"
         ]
 
 class ReservaCreateSerializer(serializers.ModelSerializer):
