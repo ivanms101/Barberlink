@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}
+    Barberlink - Registrar pago
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/registrar_pago.css' %}">
+{% endblock %}
+
+{% block contenido %}
+
+    <h1>Registrar pago</h1>
+
+    <div id="datos-pago" data-pago-id="{{ pago_id }}"></div>
+
+    <div id="informacion-pago">
+
+        <p>
+            Reserva:
+            <span id="pago-reserva"></span>
+        </p>
+
+        <p>
+            Cliente:
+            <span id="pago-cliente"></span>
+        </p>
+
+        <p>
+            Barbero:
+            <span id="pago-barbero"></span>
+        </p>
+
+        <p>
+            Servicio:
+            <span id="pago-servicio"></span>
+        </p>
+
+        <p>
+            Fecha:
+            <span id="pago-fecha"></span>
+        </p>
+
+        <p>
+            Hora:
+            <span id="pago-hora"></span>
+        </p>
+
+        <p>
+            Valor:
+            <span id="pago-valor"></span>
+        </p>
+
+    </div>
+
+    <div id="formulario-pago">
+
+        <label for="metodo-pago">
+            Método de pago
+        </label>
+
+        <select id="metodo-pago">
+
+            <option value="">
+                Seleccione un método
+            </option>
+
+            <option value="EFECTIVO">
+                Efectivo
+            </option>
+
+            <option value="TRANSFERENCIA">
+                Transferencia
+            </option>
+
+            <option value="QR">
+                QR
+            </option>
+
+            <option value="TARJETA">
+                Tarjeta
+            </option>
+
+        </select>
+
+    </div>
+
+    <div>
+        <button type="button" id="registrar-pago">
+            Registrar pago
+        </button>
+
+        <a href="{% url 'pagos' %}">
+            Volver
+        </a>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/registrar_pago.js' %}"></script>
+{% endblock %}

@@ -20,9 +20,33 @@ def auditoria(request):
     return render(request, "gestion/auditoria.html")
 
 class AuditoriaViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Auditoria.objects.all().order_by("-fecha")
     serializer_class = AuditoriaSerializer
     permission_classes = [IsAuthenticated, IsAdminRole]
+
+    def get_queryset(self):
+
+        queryset = Auditoria.objects.all().order_by("-fecha")
+
+        fecha_inicio = self.request.query_params.get("fecha_inicio")
+        fecha_fin = self.request.query_params.get("fecha_fin")
+        accion = self.request.query_params.get("accion")
+
+        if fecha_inicio:
+            queryset = queryset.filter(
+                fecha__date__gte=fecha_inicio
+            )
+
+        if fecha_fin:
+            queryset = queryset.filter(
+                fecha__date__lte=fecha_fin
+            )
+
+        if accion:
+            queryset = queryset.filter(
+                accion=accion
+            )
+
+        return queryset
 
 class HorarioDiaViewSet(viewsets.ModelViewSet):
     http_method_names = ["get", "patch", "head", "options"]

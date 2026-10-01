@@ -19,6 +19,16 @@ def pagos(request):
     return render(request, "procesos/pagos.html")
 
 @login_required
+def registrar_pago_pagina(request, id):
+    return render(
+        request,
+        "procesos/registrar_pago.html",
+        {
+            "pago_id": id
+        }
+    )
+
+@login_required
 def reportes(request):
     return render(request, "procesos/reportes.html")
 

@@ -40,13 +40,12 @@ function cargarPagos() {
                     <td>$${pago.valor}</td>
                     <td>${pago.estado}</td>
                     <td>
-                        ${
-                            pago.estado === "PENDIENTE"
-                            ? `<button onclick="mostrarPago(${pago.id})">
+                        ${pago.estado === "PENDIENTE"
+                        ? `<button onclick="mostrarPago(${pago.id})">
                                 Registrar pago
-                               </button>`
-                            : "Pago registrado"
-                        }
+                            </button>`
+                        : "Pagado"
+                    }
                     </td>
                 `;
 
@@ -56,31 +55,7 @@ function cargarPagos() {
 }
 
 function mostrarPago(id) {
-
-    const metodo = prompt(
-        "Seleccione el método de pago:\n\n" +
-        "1. EFECTIVO\n" +
-        "2. TRANSFERENCIA\n" +
-        "3. QR\n" +
-        "4. TARJETA"
-    );
-
-    let metodoSeleccionado;
-
-    if (metodo === "1") {
-        metodoSeleccionado = "EFECTIVO";
-    } else if (metodo === "2") {
-        metodoSeleccionado = "TRANSFERENCIA";
-    } else if (metodo === "3") {
-        metodoSeleccionado = "QR";
-    } else if (metodo === "4") {
-        metodoSeleccionado = "TARJETA";
-    } else {
-        alert("Método de pago no válido");
-        return;
-    }
-
-    registrarPago(id, metodoSeleccionado);
+    window.location.href = `/procesos/pagos/registrar/${id}/`;
 }
 
 function registrarPago(id, metodo) {
@@ -95,18 +70,18 @@ function registrarPago(id, metodo) {
             metodo: metodo
         })
     })
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
 
-        console.log("Respuesta:", data);
+            console.log("Respuesta:", data);
 
-        if (data.mensaje) {
-            alert(data.mensaje);
-            cargarPagos();
-        } else {
-            alert(data.error);
-        }
-    });
+            if (data.mensaje) {
+                alert(data.mensaje);
+                cargarPagos();
+            } else {
+                alert(data.error);
+            }
+        });
 }
 
 cargarPagos();

@@ -11,6 +11,62 @@
 
 <h1>Auditoría del sistema</h1>
 
+<div id="filtros-auditoria">
+
+    <div>
+        <label for="fecha-inicio">
+            Fecha inicial
+        </label>
+
+        <input
+            type="date"
+            id="fecha-inicio"
+        >
+    </div>
+
+    <div>
+        <label for="fecha-fin">
+            Fecha final
+        </label>
+
+        <input
+            type="date"
+            id="fecha-fin"
+        >
+    </div>
+
+    <div>
+        <label for="filtro-accion">
+            Acción
+        </label>
+
+        <select id="filtro-accion">
+
+            <option value="">
+                Todas
+            </option>
+
+        </select>
+    </div>
+
+    <div>
+        <button
+            type="button"
+            id="filtrar-auditoria"
+        >
+            Filtrar
+        </button>
+
+        <button
+            type="button"
+            id="limpiar-filtros-auditoria"
+        >
+            Limpiar filtros
+        </button>
+    </div>
+
+</div>
+
 <table>
     <thead>
         <tr>

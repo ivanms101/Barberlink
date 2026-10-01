@@ -7,6 +7,7 @@ class PagoSerializer(serializers.ModelSerializer):
     fecha = serializers.SerializerMethodField()
     hora = serializers.SerializerMethodField()
     nombre_barbero = serializers.SerializerMethodField()
+    valor = serializers.SerializerMethodField()
     def get_nombre_cliente(self, obj):
         return obj.reserva.cliente.usua_nomb
     def get_nombre_servicio(self, obj):
@@ -17,6 +18,8 @@ class PagoSerializer(serializers.ModelSerializer):
         return obj.reserva.hora
     def get_nombre_barbero(self, obj):
         return obj.reserva.barbero.usua_nomb
+    def get_valor(self, obj):
+        return obj.reserva.detalles.all()[0].servicio.serv_tari
     class Meta:
         model = Pago
         fields = [

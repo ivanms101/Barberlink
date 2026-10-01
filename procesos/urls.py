@@ -8,6 +8,7 @@ router.register("api/pagos", views.PagoViewSet, basename="pagos")
 
 urlpatterns = [
     path("pagos/", views.pagos, name="pagos"),
+    path("pagos/registrar/<int:id>/", views.registrar_pago_pagina, name="registrar_pago_pagina"),
     path("reportes/", views.reportes, name="reportes"),
     path("", include(router.urls)),
 ]
