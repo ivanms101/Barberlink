@@ -10,122 +10,79 @@
     letter-spacing: -0.6px;
 }
 
-/* ==============================
-   Ocultar título del menú
-   ============================== */
-
-.titulo-menu {
-    display: none;
-}
-
 
 /* =========================================================
    CONTENEDOR PRINCIPAL
    ========================================================= */
 
 .contenedor-reserva {
+    width: 100%;
+    max-width: 1080px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
-    width: 100%;
+    align-items: start;
 }
 
 
 /* =========================================================
-   SECCIONES DE SELECCIÓN
+   TARJETAS DE SELECCIÓN
    ========================================================= */
 
-.contenedor-reserva section {
-    padding: 24px;
+.contenedor-reserva > section {
+    width: 100%;
+    padding: 26px;
     border: 1px solid var(--color-borde);
     border-radius: var(--radio);
     background-color: var(--color-superficie);
     box-shadow: var(--sombra-suave);
 }
 
-.contenedor-reserva section h2 {
-    margin: 0 0 18px;
+.contenedor-reserva > section h2,
+.contenido > section:not(.contenedor-reserva) h2 {
+    margin: 0 0 20px;
     color: var(--color-texto);
-    font-size: 17px;
-    font-weight: 650;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: -0.2px;
 }
 
 
 /* =========================================================
-   LISTAS GENERADAS POR JAVASCRIPT
+   PROFESIONALES Y SERVICIOS
    ========================================================= */
 
 #lista-profesionales,
-#lista-servicios,
-#lista-horarios {
+#lista-servicios {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 9px;
 }
 
 
-/* =========================================================
-   OPCIONES DE PROFESIONALES
-   ========================================================= */
+/* Botones de profesional y servicio */
 
-#lista-profesionales button {
-    min-height: 42px;
-    padding: 9px 14px;
-    border: 1px solid var(--color-borde);
-    border-radius: 8px;
-    background-color: #ffffff;
-    color: var(--color-texto);
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        background-color .2s ease,
-        border-color .2s ease,
-        color .2s ease,
-        transform .2s ease,
-        box-shadow .2s ease;
-}
-
-#lista-profesionales button:hover {
-    background-color: var(--color-azul-suave);
-    border-color: #b9d9f7;
-    color: var(--color-azul-hover);
-    transform: translateY(-1px);
-}
-
-#lista-profesionales button.seleccionado {
-    background-color: var(--color-azul);
-    border-color: var(--color-azul);
-    color: #ffffff;
-    box-shadow: 0 5px 12px rgba(22, 131, 245, .16);
-}
-
-
-/* =========================================================
-   OPCIONES DE SERVICIOS
-   ========================================================= */
-
+#lista-profesionales button,
 #lista-servicios button {
-    min-height: 42px;
-    padding: 9px 14px;
+    min-height: 40px;
+    padding: 8px 13px;
     border: 1px solid var(--color-borde);
     border-radius: 8px;
     background-color: #ffffff;
     color: var(--color-texto);
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition:
         background-color .2s ease,
         border-color .2s ease,
         color .2s ease,
-        transform .2s ease,
-        box-shadow .2s ease;
+        box-shadow .2s ease,
+        transform .2s ease;
 }
 
+#lista-profesionales button:hover,
 #lista-servicios button:hover {
     background-color: var(--color-azul-suave);
     border-color: #b9d9f7;
@@ -133,11 +90,16 @@
     transform: translateY(-1px);
 }
 
-#lista-servicios button.seleccionado {
-    background-color: var(--color-azul);
+
+/* Elemento seleccionado */
+
+#lista-profesionales button.seleccionado,
+#lista-servicios button.seleccionado,
+#lista-horarios button.seleccionado {
     border-color: var(--color-azul);
+    background-color: var(--color-azul);
     color: #ffffff;
-    box-shadow: 0 5px 12px rgba(22, 131, 245, .16);
+    box-shadow: 0 4px 12px rgba(22, 131, 245, .18);
 }
 
 
@@ -156,7 +118,6 @@
     font-family: inherit;
     font-size: 14px;
     outline: none;
-    cursor: pointer;
     transition:
         border-color .2s ease,
         box-shadow .2s ease;
@@ -169,25 +130,35 @@
 
 
 /* =========================================================
-   HORARIOS
+   HORARIOS DISPONIBLES
    ========================================================= */
 
+#lista-horarios {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 9px;
+}
+
+
+/* Botones de horario */
+
 #lista-horarios button {
-    min-width: 78px;
-    min-height: 40px;
-    padding: 8px 12px;
+    width: 100%;
+    min-height: 38px;
+    padding: 7px 5px;
     border: 1px solid var(--color-borde);
     border-radius: 8px;
     background-color: #ffffff;
     color: var(--color-texto);
     font-family: inherit;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     transition:
         background-color .2s ease,
         border-color .2s ease,
         color .2s ease,
+        box-shadow .2s ease,
         transform .2s ease;
 }
 
@@ -199,9 +170,19 @@
 }
 
 #lista-horarios button.seleccionado {
-    background-color: var(--color-azul);
     border-color: var(--color-azul);
+    background-color: var(--color-azul);
     color: #ffffff;
+    box-shadow: 0 4px 12px rgba(22, 131, 245, .18);
+}
+
+
+/* Mensaje sin horarios */
+
+#lista-horarios:not(:has(button)) {
+    color: var(--color-texto-secundario);
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 
@@ -209,10 +190,10 @@
    RESUMEN DE LA CITA
    ========================================================= */
 
-.contenido > section:last-of-type {
+.contenido > section:not(.contenedor-reserva) {
     width: 100%;
-    max-width: 760px;
-    margin-top: 24px;
+    max-width: 1080px;
+    margin-top: 20px;
     padding: 28px;
     border: 1px solid var(--color-borde);
     border-radius: var(--radio);
@@ -220,56 +201,41 @@
     box-shadow: var(--sombra-suave);
 }
 
-.contenido > section:last-of-type h2 {
-    margin: 0 0 22px;
-    color: var(--color-texto);
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: -.3px;
-}
-
-.contenido > section:last-of-type p {
+.contenido > section:not(.contenedor-reserva) p {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    align-items: center;
+    min-height: 42px;
     margin: 0;
-    padding: 11px 0;
+    padding: 9px 0;
     border-bottom: 1px solid #edf1f5;
     color: var(--color-texto-secundario);
     font-size: 14px;
 }
 
-.contenido > section:last-of-type p:last-of-type {
-    margin-bottom: 8px;
-    border-bottom: none;
-}
-
-.contenido > section:last-of-type p span {
+.contenido > section:not(.contenedor-reserva) p span {
     color: var(--color-texto);
     font-weight: 600;
     text-align: right;
 }
 
 
-/* =========================================================
-   TOTAL
-   ========================================================= */
+/* Total */
 
 #resumen-total {
-    color: var(--color-azul) !important;
     font-size: 16px;
-    font-weight: 700 !important;
+    font-weight: 700;
 }
 
 
 /* =========================================================
-   CONFIRMAR
+   BOTÓN CONFIRMAR
    ========================================================= */
 
 #confirmar-cita {
     width: 100%;
     min-height: 46px;
-    margin-top: 18px;
+    margin-top: 24px;
     padding: 10px 18px;
     border: 1px solid var(--color-azul);
     border-radius: 9px;
@@ -282,8 +248,8 @@
     transition:
         background-color .2s ease,
         border-color .2s ease,
-        transform .2s ease,
-        box-shadow .2s ease;
+        box-shadow .2s ease,
+        transform .2s ease;
 }
 
 #confirmar-cita:hover {
@@ -333,37 +299,56 @@
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
     .contenedor-reserva {
         grid-template-columns: 1fr;
     }
 
-    .contenido > section:last-of-type {
-        max-width: 100%;
+    #lista-horarios {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
     }
+
 }
 
-@media (max-width: 600px) {
+
+@media (max-width: 650px) {
 
     .contenido > h1 {
         font-size: 26px;
     }
 
-    .contenedor-reserva section {
-        padding: 20px;
-    }
-
-    .contenido > section:last-of-type {
+    .contenedor-reserva > section,
+    .contenido > section:not(.contenedor-reserva) {
         padding: 22px;
     }
 
-    .contenido > section:last-of-type p {
+    #lista-horarios {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .contenido > section:not(.contenedor-reserva) p {
         flex-direction: column;
+        align-items: flex-start;
         gap: 4px;
     }
 
-    .contenido > section:last-of-type p span {
+    .contenido > section:not(.contenedor-reserva) p span {
         text-align: left;
     }
+
+}
+
+
+@media (max-width: 420px) {
+
+    #lista-horarios {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    #lista-profesionales button,
+    #lista-servicios button {
+        width: 100%;
+    }
+
 }

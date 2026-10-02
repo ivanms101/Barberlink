@@ -2,21 +2,365 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+
+/* =========================
+   TÍTULOS DE LOS REPORTES
+   ========================= */
+
+.contenido > h1 {
+    margin: 0 0 22px;
+    color: var(--color-texto);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
 }
 
-.volver {
-    display: inline-block;
+.contenido > h1:not(:first-child) {
+    margin-top: 48px;
+}
+
+
+/* =========================
+   FILTROS
+   ========================= */
+
+#filtros-pagos,
+#filtros-citas {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding: 20px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+#filtros-pagos > div,
+#filtros-citas > div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#filtros-pagos label,
+#filtros-citas label {
+    color: var(--color-texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#filtros-pagos input,
+#filtros-pagos select,
+#filtros-citas input,
+#filtros-citas select {
+    width: 190px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+#filtros-pagos input:focus,
+#filtros-pagos select:focus,
+#filtros-citas input:focus,
+#filtros-citas select:focus {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 3px rgba(22, 131, 245, .12);
+}
+
+#filtros-pagos select,
+#filtros-citas select {
+    cursor: pointer;
+}
+
+
+/* =========================
+   BOTONES DE FILTROS
+   ========================= */
+
+#filtros-pagos > div:last-child,
+#filtros-citas > div:last-child {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 9px;
+}
+
+#filtrar-pagos,
+#filtrar-citas,
+#limpiar-filtros-pagos,
+#limpiar-filtros-citas,
+#exportar-pagos-excel,
+#exportar-citas-excel {
+    min-height: 42px;
+    padding: 9px 15px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+/* Botón principal */
+
+#filtrar-pagos,
+#filtrar-citas {
+    border: 1px solid var(--color-azul);
+    background-color: var(--color-azul);
+    color: #ffffff;
+}
+
+#filtrar-pagos:hover,
+#filtrar-citas:hover {
+    border-color: var(--color-azul-hover);
+    background-color: var(--color-azul-hover);
+    box-shadow: 0 6px 16px rgba(22, 131, 245, .18);
+    transform: translateY(-1px);
+}
+
+
+/* Limpiar */
+
+#limpiar-filtros-pagos,
+#limpiar-filtros-citas {
+    border: 1px solid var(--color-borde);
+    background-color: #ffffff;
+    color: var(--color-texto);
+}
+
+#limpiar-filtros-pagos:hover,
+#limpiar-filtros-citas:hover {
+    border-color: #cbd7e4;
+    background-color: #f4f7fb;
+    transform: translateY(-1px);
+}
+
+
+/* Exportar */
+
+#exportar-pagos-excel,
+#exportar-citas-excel {
+    border: 1px solid var(--color-borde);
+    background-color: #f4f7fb;
+    color: var(--color-texto);
+}
+
+#exportar-pagos-excel:hover,
+#exportar-citas-excel:hover {
+    border-color: #b9d9f7;
+    background-color: var(--color-azul-suave);
+    color: var(--color-azul-hover);
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   TABLAS
+   ========================= */
+
+.contenido > table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+.contenido > table th,
+.contenido > table td {
+    padding: 14px 15px;
+    border-bottom: 1px solid var(--color-borde);
+    font-size: 14px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.contenido > table th {
+    background-color: #f4f7fb;
+    color: var(--color-texto);
+    font-size: 12px;
+    font-weight: 650;
+    letter-spacing: .4px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.contenido > table td {
+    color: var(--color-texto-secundario);
+}
+
+.contenido > table tbody tr {
+    transition: background-color .15s ease;
+}
+
+.contenido > table tbody tr:hover {
+    background-color: #f8fbff;
+}
+
+.contenido > table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================
+   ALINEACIÓN TABLA PAGOS
+   ========================= */
+
+#lista-reporte-pagos td:nth-child(1),
+#lista-reporte-pagos td:nth-child(5),
+#lista-reporte-pagos td:nth-child(6),
+#lista-reporte-pagos td:nth-child(8) {
+    text-align: center;
+}
+
+#lista-reporte-pagos td:nth-child(7) {
+    text-align: right;
+}
+
+#lista-reporte-pagos td:nth-child(8) {
+    font-weight: 600;
+}
+
+
+/* =========================
+   ALINEACIÓN TABLA CITAS
+   ========================= */
+
+#lista-reporte-citas td:nth-child(1),
+#lista-reporte-citas td:nth-child(5),
+#lista-reporte-citas td:nth-child(6),
+#lista-reporte-citas td:nth-child(7) {
+    text-align: center;
+}
+
+#lista-reporte-citas td:nth-child(7) {
+    font-weight: 600;
+}
+
+
+/* =========================
+   RESUMEN DE PAGOS
+   ========================= */
+
+.resumen-reporte {
+    width: 100%;
+    max-width: 360px;
     margin-top: 20px;
-    padding: 8px 14px;
-    text-decoration: none;
-    background-color: #1f2937;
-    color: white;
-    border-radius: 6px;
+    padding: 20px 24px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
 }
 
-.volver:hover {
-    background-color: #374151;
+.resumen-reporte h2 {
+    margin: 0 0 8px;
+    color: var(--color-texto-secundario);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+}
+
+.resumen-reporte p {
+    margin: 0;
+    color: var(--color-azul);
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1150px) {
+
+    #filtros-pagos,
+    #filtros-citas {
+        align-items: flex-start;
+    }
+
+    #filtros-pagos > div:last-child,
+    #filtros-citas > div:last-child {
+        width: 100%;
+        align-items: center;
+    }
+
+    .contenido > table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .contenido > h1 {
+        font-size: 26px;
+    }
+
+    .contenido > h1:not(:first-child) {
+        margin-top: 38px;
+    }
+
+    #filtros-pagos,
+    #filtros-citas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    #filtros-pagos > div,
+    #filtros-citas > div {
+        width: 100%;
+    }
+
+    #filtros-pagos input,
+    #filtros-pagos select,
+    #filtros-citas input,
+    #filtros-citas select {
+        width: 100%;
+    }
+
+    #filtros-pagos > div:last-child,
+    #filtros-citas > div:last-child {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #filtrar-pagos,
+    #limpiar-filtros-pagos,
+    #exportar-pagos-excel,
+    #filtrar-citas,
+    #limpiar-filtros-citas,
+    #exportar-citas-excel {
+        width: 100%;
+    }
+
+    .resumen-reporte {
+        max-width: 100%;
+    }
 }

@@ -1,5 +1,6 @@
 console.log("agenda.js funcionando");
 
+
 const nombresDias = {
     1: "Lunes",
     2: "Martes",
@@ -9,6 +10,7 @@ const nombresDias = {
     6: "Sábado",
     7: "Domingo"
 };
+
 
 let dias = [];
 let franjas = [];
@@ -117,6 +119,7 @@ function cambiarEstadoDia(id, estadoActual) {
     .then(response => {
 
         if (!response.ok) {
+
             throw new Error(
                 "No fue posible actualizar el día."
             );
@@ -468,6 +471,13 @@ function editarFranja(id) {
         franja.horf_hora_fin.substring(0, 5);
 
     mostrarFormularioFranja();
+
+    document.getElementById(
+        "formulario-franja"
+    ).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
 
 
@@ -497,6 +507,7 @@ function cambiarEstadoFranja(
     .then(response => {
 
         if (!response.ok) {
+
             throw new Error(
                 "No fue posible actualizar la franja."
             );
@@ -559,6 +570,7 @@ function eliminarFranja(id) {
     .then(response => {
 
         if (!response.ok) {
+
             throw new Error(
                 "No fue posible eliminar la franja."
             );

@@ -1,6 +1,6 @@
-/* ==============================
-   Encabezado de la página
-   ============================== */
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
 
 .contenido > h1 {
     margin: 0 0 26px;
@@ -11,9 +11,9 @@
 }
 
 
-/* ==============================
-   Filtros
-   ============================== */
+/* =========================================================
+   FILTROS
+   ========================================================= */
 
 .filtros-usuarios {
     display: flex;
@@ -69,42 +69,137 @@
 }
 
 
-/* ==============================
-   Tabla
-   ============================== */
+/* =========================================================
+   TABLA
+   ========================================================= */
 
 table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    overflow: hidden;
     border: 1px solid var(--color-borde);
     border-radius: var(--radio);
     background-color: var(--color-superficie);
     box-shadow: var(--sombra-suave);
 }
 
+
+/* =========================================================
+   CELDAS
+   ========================================================= */
+
 th,
 td {
-    padding: 14px 16px;
-    text-align: left;
+    padding: 13px 14px;
     border-bottom: 1px solid var(--color-borde);
-    font-size: 14px;
+    font-size: 13px;
+    vertical-align: middle;
 }
 
 th {
     background-color: #f4f7fb;
     color: var(--color-texto);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 650;
     letter-spacing: 0.4px;
     text-align: center;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 td {
     color: var(--color-texto-secundario);
+    line-height: 1.35;
 }
+
+
+/* =========================================================
+   COLUMNAS DE DATOS
+   ========================================================= */
+
+/* ID */
+
+th:first-child,
+td:first-child {
+    width: 55px;
+    text-align: center;
+}
+
+
+/* Nombre */
+
+th:nth-child(2),
+td:nth-child(2) {
+    min-width: 110px;
+}
+
+
+/* Documento */
+
+th:nth-child(3),
+td:nth-child(3) {
+    min-width: 115px;
+}
+
+
+/* Correo */
+
+th:nth-child(4),
+td:nth-child(4) {
+    min-width: 170px;
+}
+
+
+/* Teléfono */
+
+th:nth-child(5),
+td:nth-child(5) {
+    min-width: 120px;
+}
+
+
+/* Rol */
+
+th:nth-child(6),
+td:nth-child(6) {
+    min-width: 115px;
+}
+
+
+/* Estado */
+
+th:nth-child(7),
+td:nth-child(7) {
+    min-width: 125px;
+    text-align: center;
+}
+
+
+/* Acciones */
+
+th:nth-child(8),
+td:nth-child(8) {
+    min-width: 150px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   TEXTO DE LAS CELDAS
+   ========================================================= */
+
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6) {
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   FILAS
+   ========================================================= */
 
 tbody tr {
     transition: background-color 0.15s ease;
@@ -119,32 +214,35 @@ tbody tr:last-child td {
 }
 
 
-/* ==============================
-   Columna Estado
-   ============================== */
+/* =========================================================
+   ESTADO
+   ========================================================= */
 
 tbody td:nth-child(7) {
-    text-align: center;
+    color: var(--color-texto-secundario);
 }
 
 
-/* ==============================
-   Botón Cambiar estado
-   ============================== */
+/* =========================================================
+   BOTÓN CAMBIAR ESTADO
+   ========================================================= */
 
-tbody td button {
+tbody td:nth-child(7) button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 32px;
-    padding: 6px 11px;
+    min-height: 30px;
+    margin-top: 5px;
+    padding: 5px 9px;
     border: 1px solid var(--color-borde);
     border-radius: 7px;
     background-color: #f4f7fb;
     color: var(--color-texto);
     font-family: inherit;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
     cursor: pointer;
     transition:
         background-color 0.2s ease,
@@ -152,33 +250,36 @@ tbody td button {
         color 0.2s ease;
 }
 
-tbody td button:hover {
+tbody td:nth-child(7) button:hover {
     background-color: var(--color-azul-suave);
     border-color: #b9d9f7;
     color: var(--color-azul-hover);
 }
 
 
-/* ==============================
-   Columna Acciones
-   ============================== */
+/* =========================================================
+   COLUMNA ACCIONES
+   ========================================================= */
 
 tbody td:last-child {
     text-align: center;
 }
 
+
+/* Botones de acciones */
+
 tbody td:last-child a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 32px;
+    min-height: 30px;
     margin: 2px;
-    padding: 6px 11px;
+    padding: 5px 9px;
     border: 1px solid var(--color-borde);
     border-radius: 7px;
     background-color: #ffffff;
     color: var(--color-texto);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     line-height: 1.2;
     text-decoration: none;
@@ -198,46 +299,9 @@ tbody td:last-child a:hover {
 }
 
 
-/* ==============================
-   Botón Crear usuario
-   ============================== */
-
-.crear_usuario {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 44px;
-    margin: 0 0 20px;
-    padding: 10px 18px;
-    border: 1px solid var(--color-azul);
-    border-radius: 9px;
-    background-color: var(--color-azul);
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.crear_usuario:hover {
-    background-color: var(--color-azul-hover);
-    border-color: var(--color-azul-hover);
-    box-shadow: 0 6px 16px rgba(22, 131, 245, 0.18);
-    transform: translateY(-1px);
-}
-
-.crear_usuario:active {
-    transform: translateY(0);
-}
-
-
-/* ==============================
-   Botón Volver
-   ============================== */
+/* =========================================================
+   BOTÓN VOLVER
+   ========================================================= */
 
 .volver-btn {
     display: inline-flex;
@@ -263,15 +327,14 @@ tbody td:last-child a:hover {
 }
 
 
-/* ==============================
-   Adaptación para pantallas
-   ============================== */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
 
     .filtros-usuarios {
         flex-wrap: wrap;
-        align-items: center;
     }
 
     .filtros-usuarios input,
@@ -284,6 +347,7 @@ tbody td:last-child a:hover {
         overflow-x: auto;
         white-space: nowrap;
     }
+
 }
 
 
@@ -310,7 +374,4 @@ tbody td:last-child a:hover {
         min-width: 0;
     }
 
-    .crear_usuario {
-        width: 100%;
-    }
 }
