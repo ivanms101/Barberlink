@@ -10,6 +10,7 @@ router.register("api/horarios-franjas", views.HorarioFranjaViewSet, basename="ho
 
 urlpatterns = [
     path("", views.configuracion, name="configuracion"),
+    path("agenda/", views.agenda, name="agenda"),
     path("auditoria/", views.auditoria, name="auditoria"),
     path("", include(router.urls)),
 ]

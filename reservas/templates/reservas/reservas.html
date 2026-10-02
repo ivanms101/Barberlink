@@ -1,7 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block titulo %}
     Barberlink - Reservas
+{% endblock %}
+
+{% block titulo_menu %}
+    Reservas
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'reservas' %}">Reservas</a>
+    <a href="{% url 'crear_reserva_pagina' %}">Crear reserva</a>
+    <a href="{% url 'inicio' %}">Inicio</a>
+
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/reservas.css' %}">
 {% endblock %}
 
 {% block contenido %}
@@ -11,92 +28,117 @@
     <a href="{% url 'crear_reserva_pagina' %}">
         Crear reserva
     </a>
-<div id="contenedor-reservas">
-    <table id="tabla-reservas">
-        <thead>
-            <tr>
-                <th>Cliente</th>
-                <th>Servicio</th>
-                <th>Barbero</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
 
-        <tbody id="lista-reservas">
-        </tbody>
-    </table>
-</div>
-<div id="panel-reagendar" style="display: none;">
+    <div id="contenedor-reservas">
 
-    <h2>Reagendar reserva</h2>
+        <table id="tabla-reservas">
 
-    <p>
-        Cliente:
-        <span id="reagendar-cliente"></span>
-    </p>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Servicio</th>
+                    <th>Barbero</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
 
-    <p>
-        Servicio:
-        <span id="reagendar-servicio"></span>
-    </p>
+            <tbody id="lista-reservas">
+            </tbody>
 
-    <p>
-        Barbero actual:
-        <span id="reagendar-barbero-actual"></span>
-    </p>
+        </table>
 
-    <div>
-        <label for="reagendar-barbero">
-            Nuevo barbero
-        </label>
-
-        <select id="reagendar-barbero">
-            <option value="">Seleccione un barbero</option>
-        </select>
     </div>
 
-    <div>
-        <label for="reagendar-fecha">
-            Nueva fecha
-        </label>
+    <div id="panel-reagendar" style="display: none;">
 
-        <input type="date" id="reagendar-fecha">
-    </div>
+        <h2>Reagendar reserva</h2>
 
-    <div>
-        <h3>Horarios disponibles</h3>
-
-        <div id="reagendar-horarios"></div>
-    </div>
-
-    <div>
         <p>
-            Nueva hora:
-            <span id="reagendar-hora"></span>
+            Cliente:
+            <span id="reagendar-cliente"></span>
         </p>
+
+        <p>
+            Servicio:
+            <span id="reagendar-servicio"></span>
+        </p>
+
+        <p>
+            Barbero actual:
+            <span id="reagendar-barbero-actual"></span>
+        </p>
+
+        <div>
+
+            <label for="reagendar-barbero">
+                Nuevo barbero
+            </label>
+
+            <select id="reagendar-barbero">
+                <option value="">
+                    Seleccione un barbero
+                </option>
+            </select>
+
+        </div>
+
+        <div>
+
+            <label for="reagendar-fecha">
+                Nueva fecha
+            </label>
+
+            <input
+                type="date"
+                id="reagendar-fecha"
+            >
+
+        </div>
+
+        <div>
+
+            <h3>Horarios disponibles</h3>
+
+            <div id="reagendar-horarios"></div>
+
+        </div>
+
+        <div>
+
+            <p>
+                Nueva hora:
+                <span id="reagendar-hora"></span>
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            id="guardar-reagendamiento"
+        >
+            Guardar cambios
+        </button>
+
+        <button
+            type="button"
+            id="cancelar-reagendamiento"
+        >
+            Salir
+        </button>
+
     </div>
-
-    <button id="guardar-reagendamiento">
-        Guardar cambios
-    </button>
-
-    <button id="cancelar-reagendamiento">
-        Salir
-    </button>
-
-</div>
 
 {% endblock %}
 
 {% block js %}
-    {% load static %}
 
     <script>
         const rolUsuario = "{{ rol_usuario }}";
     </script>
 
     <script src="{% static 'js/reservas_lista.js' %}"></script>
+
 {% endblock %}

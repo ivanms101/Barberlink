@@ -1,13 +1,75 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block titulo %}
     Barberlink - Configuración
 {% endblock %}
+
+{% block titulo_menu %}
+    Configuración
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'configuracion' %}">
+        Configuración
+    </a>
+
+    <a href="{% url 'servicios' %}">
+        Servicios
+    </a>
+
+    <a href="{% url 'agenda' %}">
+        Agenda
+    </a>
+
+    <a href="{% url 'inicio' %}">
+        Inicio
+    </a>
+
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/configuracion.css' %}">
 {% endblock %}
+
 {% block contenido %}
+
     <h1>Configuración del sistema</h1>
-    <p>Aquí se administrará la configuración de Barberlink.</p>
-    <a class="volver" href="{% url 'inicio' %}">Volver</a>
+
+    <div class="opciones-configuracion">
+
+        <div class="opcion-configuracion">
+
+            <h2>Servicios</h2>
+
+            <p>
+                Administra los servicios disponibles,
+                sus precios, duración y estado.
+            </p>
+
+            <a href="{% url 'servicios' %}">
+                Administrar servicios
+            </a>
+
+        </div>
+
+
+        <div class="opcion-configuracion">
+
+            <h2>Agenda</h2>
+
+            <p>
+                Configura los días y horarios de atención
+                disponibles para las reservas.
+            </p>
+
+            <a href="{% url 'agenda' %}">
+                Configurar agenda
+            </a>
+
+        </div>
+
+    </div>
+
 {% endblock %}

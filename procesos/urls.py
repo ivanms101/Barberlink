@@ -10,5 +10,7 @@ urlpatterns = [
     path("pagos/", views.pagos, name="pagos"),
     path("pagos/registrar/<int:id>/", views.registrar_pago_pagina, name="registrar_pago_pagina"),
     path("reportes/", views.reportes, name="reportes"),
+    path("reportes/pagos/excel/", views.exportar_reporte_pagos_excel, name="exportar_reporte_pagos_excel"),
+    path("reportes/citas/excel/", views.exportar_reporte_citas_excel, name="exportar_reporte_citas_excel"),
     path("", include(router.urls)),
 ]

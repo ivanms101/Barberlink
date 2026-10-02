@@ -1,92 +1,127 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block titulo %}Barberlink - Auditoría{% endblock %}
+{% block titulo %}
+    Barberlink - Auditoría
+{% endblock %}
+
+{% block titulo_menu %}
+    Auditoría
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'auditoria' %}">
+        Auditoría
+    </a>
+
+    <a href="{% url 'inicio' %}">
+        Inicio
+    </a>
+
+{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/auditoria.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auditoria.css' %}">
 {% endblock %}
 
 {% block contenido %}
 
-<h1>Auditoría del sistema</h1>
+    <h1>Auditoría del sistema</h1>
 
-<div id="filtros-auditoria">
+    <div id="filtros-auditoria">
 
-    <div>
-        <label for="fecha-inicio">
-            Fecha inicial
-        </label>
+        <div>
 
-        <input
-            type="date"
-            id="fecha-inicio"
-        >
+            <label for="fecha-inicio">
+                Fecha inicial
+            </label>
+
+            <input
+                type="date"
+                id="fecha-inicio"
+            >
+
+        </div>
+
+
+        <div>
+
+            <label for="fecha-fin">
+                Fecha final
+            </label>
+
+            <input
+                type="date"
+                id="fecha-fin"
+            >
+
+        </div>
+
+
+        <div>
+
+            <label for="filtro-accion">
+                Acción
+            </label>
+
+            <select id="filtro-accion">
+
+                <option value="">
+                    Todas
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div>
+
+            <button
+                type="button"
+                id="filtrar-auditoria"
+            >
+                Filtrar
+            </button>
+
+            <button
+                type="button"
+                id="limpiar-filtros-auditoria"
+            >
+                Limpiar filtros
+            </button>
+
+        </div>
+
     </div>
 
-    <div>
-        <label for="fecha-fin">
-            Fecha final
-        </label>
 
-        <input
-            type="date"
-            id="fecha-fin"
-        >
-    </div>
+    <table>
 
-    <div>
-        <label for="filtro-accion">
-            Acción
-        </label>
+        <thead>
 
-        <select id="filtro-accion">
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Acción</th>
+                <th>Tabla</th>
+                <th>Registro</th>
+                <th>Fecha</th>
+                <th>Observación</th>
+            </tr>
 
-            <option value="">
-                Todas
-            </option>
+        </thead>
 
-        </select>
-    </div>
+        <tbody id="lista-auditoria">
+        </tbody>
 
-    <div>
-        <button
-            type="button"
-            id="filtrar-auditoria"
-        >
-            Filtrar
-        </button>
-
-        <button
-            type="button"
-            id="limpiar-filtros-auditoria"
-        >
-            Limpiar filtros
-        </button>
-    </div>
-
-</div>
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Usuario</th>
-            <th>Acción</th>
-            <th>Tabla</th>
-            <th>Registro</th>
-            <th>Fecha</th>
-            <th>Observación</th>
-        </tr>
-    </thead>
-
-    <tbody id="lista-auditoria">
-    </tbody>
-</table>
-<a class="volver" href="{% url 'inicio' %}">Volver</a>
+    </table>
 
 {% endblock %}
 
 {% block js %}
-<script src="{% static 'js/auditoria.js' %}"></script>
+
+    <script src="{% static 'js/auditoria.js' %}"></script>
+
 {% endblock %}

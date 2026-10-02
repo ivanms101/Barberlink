@@ -5,6 +5,22 @@
     Barberlink - Reportes
 {% endblock %}
 
+{% block titulo_menu %}
+    Reportes
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'reportes' %}">
+        Reportes
+    </a>
+
+    <a href="{% url 'inicio' %}">
+        Inicio
+    </a>
+
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/reportes.css' %}">
 {% endblock %}
@@ -13,8 +29,87 @@
 
 <h1>Reporte de pagos</h1>
 
+<div id="filtros-pagos">
+
+    <div>
+        <label for="fecha-inicio-pagos">
+            Fecha inicial
+        </label>
+
+        <input
+            type="date"
+            id="fecha-inicio-pagos"
+        >
+    </div>
+
+
+    <div>
+        <label for="fecha-fin-pagos">
+            Fecha final
+        </label>
+
+        <input
+            type="date"
+            id="fecha-fin-pagos"
+        >
+    </div>
+
+
+    <div>
+        <label for="filtro-estado-pagos">
+            Estado
+        </label>
+
+        <select id="filtro-estado-pagos">
+
+            <option value="TODOS">
+                Todos
+            </option>
+
+            <option value="PENDIENTE">
+                Pendiente
+            </option>
+
+            <option value="PAGADO">
+                Pagado
+            </option>
+
+        </select>
+    </div>
+
+
+    <div>
+
+        <button
+            type="button"
+            id="filtrar-pagos"
+        >
+            Filtrar
+        </button>
+
+        <button
+            type="button"
+            id="limpiar-filtros-pagos"
+        >
+            Limpiar filtros
+        </button>
+
+        <button
+            type="button"
+            id="exportar-pagos-excel"
+        >
+            Exportar Excel
+        </button>
+
+    </div>
+
+</div>
+
+
 <table>
+
     <thead>
+
         <tr>
             <th>Reserva</th>
             <th>Cliente</th>
@@ -25,49 +120,142 @@
             <th>Valor</th>
             <th>Estado</th>
         </tr>
+
     </thead>
 
     <tbody id="lista-reporte-pagos">
     </tbody>
+
 </table>
 
+
 <div class="resumen-reporte">
+
     <h2>Total recaudado</h2>
-    <p id="total-recaudado">$0</p>
+
+    <p id="total-recaudado">
+        $0
+    </p>
+
 </div>
 
 
 <h1>Reporte de citas</h1>
 
-<label for="filtro-estado">Estado:</label>
 
-<select id="filtro-estado">
-    <option value="TODOS">Todos</option>
-    <option value="PENDIENTE">Pendiente</option>
-    <option value="CANCELADA">Cancelada</option>
-    <option value="FINALIZADA">Finalizada</option>
-</select>
+<div id="filtros-citas">
+
+    <div>
+
+        <label for="fecha-inicio-citas">
+            Fecha inicial
+        </label>
+
+        <input
+            type="date"
+            id="fecha-inicio-citas"
+        >
+
+    </div>
+
+
+    <div>
+
+        <label for="fecha-fin-citas">
+            Fecha final
+        </label>
+
+        <input
+            type="date"
+            id="fecha-fin-citas"
+        >
+
+    </div>
+
+
+    <div>
+
+        <label for="filtro-estado">
+            Estado
+        </label>
+
+        <select id="filtro-estado">
+
+            <option value="TODOS">
+                Todos
+            </option>
+
+            <option value="PENDIENTE">
+                Pendiente
+            </option>
+
+            <option value="CANCELADA">
+                Cancelada
+            </option>
+
+            <option value="FINALIZADA">
+                Finalizada
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div>
+
+        <button
+            type="button"
+            id="filtrar-citas"
+        >
+            Filtrar
+        </button>
+
+        <button
+            type="button"
+            id="limpiar-filtros-citas"
+        >
+            Limpiar filtros
+        </button>
+
+        <button
+            type="button"
+            id="exportar-citas-excel"
+        >
+            Exportar Excel
+        </button>
+
+    </div>
+
+</div>
+
 
 <table>
+
     <thead>
+
         <tr>
             <th>Reserva</th>
             <th>Cliente</th>
             <th>Barbero</th>
+            <th>Servicio</th>
             <th>Fecha</th>
             <th>Hora</th>
             <th>Estado</th>
         </tr>
+
     </thead>
 
     <tbody id="lista-reporte-citas">
     </tbody>
-</table>
 
-<a class="volver" href="{% url 'inicio' %}">Volver</a>
+</table>
 
 {% endblock %}
 
+
 {% block js %}
-    <script src="{% static 'js/reportes.js' %}"></script>
+
+<script src="{% static 'js/reportes.js' %}"></script>
+
 {% endblock %}

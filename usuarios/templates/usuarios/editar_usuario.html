@@ -10,40 +10,106 @@
 {% endblock %}
 
 {% block contenido %}
-    <h1>Editar usuario</h1>
-    <form id="form-editar-usuario" data-id="{{ pk }}">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre">
 
-        <label for="tipo_documento">Tipo documento:</label>
-        <select id="tipo_documento" name="tipo_documento">
+    <h1>Editar usuario</h1>
+
+    <form
+        id="form-editar-usuario"
+        data-id="{{ pk }}"
+    >
+
+        <label for="nombre">
+            Nombre:
+        </label>
+
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+        >
+
+
+        <label for="tipo_documento">
+            Tipo de documento:
+        </label>
+
+        <select
+            id="tipo_documento"
+            name="tipo_documento"
+        >
             <option value="CC">CC</option>
             <option value="TI">TI</option>
             <option value="CE">CE</option>
         </select>
 
-        <label for="documento">Documento:</label>
-        <input type="text" id="documento" name="documento">
 
-        <label for="telefono">Telefono:</label>
-        <input type="text" id="telefono" name="telefono">
+        <label for="documento">
+            Documento:
+        </label>
 
-        <label for="correo">Correo:</label>
-        <input type="text" id="correo" name="correo">
+        <input
+            type="text"
+            id="documento"
+            name="documento"
+        >
 
-        <label for="rol">Rol:</label>
-        <select id="rol" name="rol">
+
+        <label for="telefono">
+            Teléfono:
+        </label>
+
+        <input
+            type="text"
+            id="telefono"
+            name="telefono"
+        >
+
+
+        <label for="correo">
+            Correo:
+        </label>
+
+        <input
+            type="text"
+            id="correo"
+            name="correo"
+        >
+
+
+        <label for="rol">
+            Rol:
+        </label>
+
+        <select
+            id="rol"
+            name="rol"
+        >
             {% for rol in roles %}
                 <option value="{{ rol.rol_id }}">
                     {{ rol.rol_desc }}
                 </option>
             {% endfor %}
         </select>
-        <button type="submit">Guardar</button>
+
+
+        <button type="submit">
+            Guardar
+        </button>
+
     </form>
-    <a class="volver" href="{% url 'usuarios' %}">Volver</a>
+
+
+    <a
+        class="volver"
+        href="{% url 'usuarios' %}"
+    >
+        Volver
+    </a>
+
 {% endblock %}
 
 {% block js %}
+
     <script src="{% static 'js/editar_usuario.js' %}"></script>
+
 {% endblock %}

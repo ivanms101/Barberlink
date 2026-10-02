@@ -1,47 +1,97 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block titulo %}
-    Barberlink - Reservas
+    Barberlink - Crear reserva
 {% endblock %}
-{% block css %}
-    <link rel="stylesheet" href="{% static 'css/reservas.css' %}">
-{% endblock %}
+
 {% block contenido %}
-    <h1>Agendar cita</h1>
+
+    <h1>Crear reserva</h1>
+
     <div class="contenedor-reserva">
+
         <section>
             <h2>Profesional</h2>
-            <div id="lista-profesionales">
 
+            <div id="lista-profesionales">
             </div>
         </section>
+
         <section>
             <h2>Servicio</h2>
+
             <div id="lista-servicios">
             </div>
         </section>
+
         <section>
             <h2>Fecha</h2>
-            <input type="date" id="fecha-cita">
+
+            <input
+                type="date"
+                id="fecha-cita"
+            >
         </section>
+
         <section>
             <h2>Horarios disponibles</h2>
+
             <div id="lista-horarios">
             </div>
         </section>
+
     </div>
+
     <section>
+
         <h2>Resumen de la cita</h2>
-        <p>Profesional: <span id="resumen-profesional"></span></p>
-        <p>Servicio: <span id="resumen-servicio"></span></p>
-        <p>Fecha: <span id="resumen-fecha"></span></p>
-        <p>Hora: <span id="resumen-hora"></span></p>
-        <p>Total: <span id="resumen-total"></span></p>
-        <button id="confirmar-cita">Confirmar</button>
+
+        <p>
+            Profesional:
+            <span id="resumen-profesional"></span>
+        </p>
+
+        <p>
+            Servicio:
+            <span id="resumen-servicio"></span>
+        </p>
+
+        <p>
+            Fecha:
+            <span id="resumen-fecha"></span>
+        </p>
+
+        <p>
+            Hora:
+            <span id="resumen-hora"></span>
+        </p>
+
+        <p>
+            Total:
+            <span id="resumen-total"></span>
+        </p>
+
+        <button
+            type="button"
+            id="confirmar-cita"
+        >
+            Confirmar
+        </button>
+
     </section>
-    <a class="volver" href="{% url 'inicio' %}">Volver</a>
+
+    <a
+        class="volver"
+        href="{% url 'reservas' %}"
+    >
+        Volver
+    </a>
+
 {% endblock %}
 
 {% block js %}
+
     <script src="{% static 'js/reservas.js' %}"></script>
+
 {% endblock %}

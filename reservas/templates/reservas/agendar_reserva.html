@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block titulo %}
     Barberlink - Agendar reserva
@@ -11,42 +12,58 @@
     <div id="formulario-agendar">
 
         <div>
+
             <label for="agendar-cliente">
                 Cliente
             </label>
 
             <select id="agendar-cliente">
+
                 <option value="">
                     Seleccione un cliente
                 </option>
+
             </select>
+
         </div>
 
+
         <div>
+
             <label for="agendar-servicio">
                 Servicio
             </label>
 
             <select id="agendar-servicio">
+
                 <option value="">
                     Seleccione un servicio
                 </option>
+
             </select>
+
         </div>
 
+
         <div>
+
             <label for="agendar-barbero">
                 Barbero
             </label>
 
             <select id="agendar-barbero">
+
                 <option value="">
                     Seleccione un barbero
                 </option>
+
             </select>
+
         </div>
 
+
         <div>
+
             <label for="agendar-fecha">
                 Fecha
             </label>
@@ -55,17 +72,23 @@
                 type="date"
                 id="agendar-fecha"
             >
+
         </div>
 
+
         <div>
+
             <h2>Horarios disponibles</h2>
 
             <div id="agendar-horarios">
                 Seleccione servicio, barbero y fecha.
             </div>
+
         </div>
 
+
         <div>
+
             <h2>Resumen</h2>
 
             <p>
@@ -92,7 +115,9 @@
                 Hora:
                 <span id="resumen-hora"></span>
             </p>
+
         </div>
+
 
         <button
             type="button"
@@ -103,11 +128,17 @@
 
     </div>
 
+
+    <a
+        class="volver"
+        href="{% url 'reservas' %}"
+    >
+        Volver
+    </a>
+
 {% endblock %}
 
 {% block js %}
-
-    {% load static %}
 
     <script src="{% static 'js/agendar_reserva.js' %}"></script>
 

@@ -1,30 +1,71 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block titulo %}
     Barberlink - Servicios
 {% endblock %}
+
+{% block titulo_menu %}
+    Servicios
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'servicios' %}">
+        Servicios
+    </a>
+
+    <a href="{% url 'crear_servicio' %}">
+        Crear servicio
+    </a>
+
+    <a href="{% url 'configuracion' %}">
+        Configuración
+    </a>
+
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/servicios.css' %}">
 {% endblock %}
+
 {% block contenido %}
+
     <h1>Gestión de servicios</h1>
-    <a class="crear_servicio" href="{% url 'crear_servicio' %}">Crear servicio</a>
+
+    <a
+        class="crear_servicio"
+        href="{% url 'crear_servicio' %}"
+    >
+        Crear servicio
+    </a>
+
+
     <table>
+
         <thead>
+
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Tarifa</th>
-                <th>Duracion</th>
+                <th>Duración</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>
+
         </thead>
+
         <tbody id="tabla-servicios">
         </tbody>
+
     </table>
-    <a class="volver" href="{% url 'inicio' %}">Volver</a>
+
 {% endblock %}
+
+
 {% block js %}
+
     <script src="{% static 'js/servicios.js' %}"></script>
+
 {% endblock %}

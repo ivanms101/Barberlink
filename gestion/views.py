@@ -14,6 +14,13 @@ def configuracion(request):
     return render(request, "gestion/configuracion.html")
 
 @login_required
+def agenda(request):
+    if request.user.usua_rol.rol_nomb != "admin":
+        return HttpResponse("No tiene acceso a esa funcion")
+
+    return render(request, "gestion/agenda.html")
+
+@login_required
 def auditoria(request):
     if request.user.usua_rol.rol_nomb != "admin":
         return HttpResponse("No tiene acceso a esa funcion")

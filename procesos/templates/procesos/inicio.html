@@ -12,14 +12,17 @@
 {% block menu %}
 
     <a href="{% url 'inicio' %}">Inicio</a>
-    <a href="{% url 'servicios' %}">Servicios</a>
     <a href="{% url 'reservas' %}">Reservas</a>
     <a href="{% url 'perfil' %}">Mi Perfil</a>
-    {% if usuario.usua_rol.rol_nomb == "admin" %}
-        <a href="{% url 'usuarios' %}">Usuarios</a>
+
+    {% if usuario.usua_rol.rol_nomb == "admin" or usuario.usua_rol.rol_nomb == "manage" or usuario.usua_rol.rol_nomb == "assist" %}
         <a href="{% url 'pagos' %}">Pagos</a>
         <a href="{% url 'reportes' %}">Reportes</a>
         <a href="{% url 'configuracion' %}">Configuración</a>
+    {% endif %}
+
+    {% if usuario.usua_rol.rol_nomb == "admin" %}
+        <a href="{% url 'usuarios' %}">Usuarios</a>
         <a href="{% url 'auditoria' %}">Auditoría</a>
     {% endif %}
 
@@ -46,25 +49,17 @@
 
     <h2 class="titulo-resumen">Resumen</h2>
 
-    <div class="tarjetas">
-
-        <div class="tarjeta">
-            <h3>Reservas</h3>
-            <p class="valor">0</p>
-        </div>
-
-        <div class="tarjeta">
-            <h3>Servicios</h3>
-            <p class="valor">0</p>
-        </div>
-
-        <div class="tarjeta">
-            <h3>Pagos</h3>
-            <p class="valor">0</p>
-        </div>
-
+    <div
+        id="dashboard-contenido"
+        data-rol="{{ usuario.usua_rol.rol_nomb }}"
+    >
+        <!-- inicio.js cargará el dashboard correspondiente al rol -->
     </div>
 
 </section>
 
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/inicio.js' %}"></script>
 {% endblock %}

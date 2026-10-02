@@ -5,6 +5,22 @@
     Barberlink - Pagos
 {% endblock %}
 
+{% block titulo_menu %}
+    Pagos
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'pagos' %}">
+        Pagos
+    </a>
+
+    <a href="{% url 'inicio' %}">
+        Inicio
+    </a>
+
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/pagos.css' %}">
 {% endblock %}
@@ -14,28 +30,32 @@
     <h1>Gestión de pagos</h1>
 
     <table>
-    <thead>
-        <tr>
-            <th>Reserva</th>
-            <th>Cliente</th>
-            <th>Barbero</th>
-            <th>Servicio</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Valor</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
 
-    <tbody id="lista-pagos">
-    </tbody>
-</table>
+        <thead>
 
-    <a class="volver" href="{% url 'inicio' %}">Volver</a>
+            <tr>
+                <th>Reserva</th>
+                <th>Cliente</th>
+                <th>Barbero</th>
+                <th>Servicio</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Valor</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="lista-pagos">
+        </tbody>
+
+    </table>
 
 {% endblock %}
 
 {% block js %}
+
     <script src="{% static 'js/pagos.js' %}"></script>
+
 {% endblock %}

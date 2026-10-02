@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}
+    Barberlink - Agenda
+{% endblock %}
+
+{% block titulo_menu %}
+    Agenda
+{% endblock %}
+
+{% block menu %}
+
+    <a href="{% url 'agenda' %}">
+        Agenda
+    </a>
+
+    <a href="{% url 'configuracion' %}">
+        Configuración
+    </a>
+
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/agenda.css' %}">
+{% endblock %}
+
+{% block contenido %}
+
+    <h1>Configuración de agenda</h1>
+
+
+    <section class="configuracion-dias">
+
+        <h2>Días de atención</h2>
+
+        <div id="lista-dias"></div>
+
+    </section>
+
+
+    <section class="configuracion-franjas">
+
+        <h2>Franjas horarias</h2>
+
+        <div id="lista-franjas"></div>
+
+        <button
+            type="button"
+            id="agregar-franja"
+        >
+            Agregar franja
+        </button>
+
+    </section>
+
+
+    <div
+        id="formulario-franja"
+        hidden
+    >
+
+        <h2 id="titulo-formulario-franja">
+            Agregar franja
+        </h2>
+
+
+        <label for="dia-franja">
+            Día
+        </label>
+
+        <select id="dia-franja">
+        </select>
+
+
+        <label for="hora-inicio">
+            Hora de inicio
+        </label>
+
+        <input
+            type="time"
+            id="hora-inicio"
+        >
+
+
+        <label for="hora-fin">
+            Hora de fin
+        </label>
+
+        <input
+            type="time"
+            id="hora-fin"
+        >
+
+
+        <div>
+
+            <button
+                type="button"
+                id="guardar-franja"
+            >
+                Guardar
+            </button>
+
+            <button
+                type="button"
+                id="cancelar-franja"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <a
+        class="volver"
+        href="{% url 'configuracion' %}"
+    >
+        Volver
+    </a>
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script src="{% static 'js/agenda.js' %}"></script>
+
+{% endblock %}

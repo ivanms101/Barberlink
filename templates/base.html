@@ -1,40 +1,76 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            {% block titulo %}
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        {% block titulo %}
+            Barberlink
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/base.css' %}"
+    >
+
+    {% block css %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <aside class="barra-lateral">
+
+            <h1 class="logo">
                 Barberlink
-            {% endblock %}
-        </title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        {% block css %}
-        {% endblock %}
-    </head>
-    <body>
-        <div class="contenedor">
-            <aside class="barra-lateral">
-                <h1 class="logo">Barberlink</h1>
-                <h2 class="titulo-menu">
-                    {% block titulo_menu %}
-                        Menú
-                    {% endblock %}
-                </h2>
-                <nav class="menu">
-                    {% block menu %}
-                    {% endblock %}
-                </nav>
-                <a class="cerrar-sesion" href="{% url 'logout' %}">
-                    Cerrar sesion
-                </a>
-            </aside>
-            <main class="contenido">
-                {% block contenido %}
+            </h1>
+
+            <h2 class="titulo-menu">
+
+                {% block titulo_menu %}
+                    Menú
                 {% endblock %}
-            </main>
-        </div>
-        {% block js %}
-        {% endblock %}
-    </body>
+
+            </h2>
+
+            <nav class="menu">
+
+                {% block menu %}
+                {% endblock %}
+
+            </nav>
+
+            <a
+                class="cerrar-sesion"
+                href="{% url 'logout' %}"
+            >
+                Cerrar sesión
+            </a>
+
+        </aside>
+
+
+        <main class="contenido">
+
+            {% block contenido %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+
+    {% block js %}
+    {% endblock %}
+
+</body>
+
 </html>
