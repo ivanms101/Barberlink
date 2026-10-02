@@ -29,8 +29,25 @@
 
     <h1>Gestión de pagos</h1>
 
-    <table>
+<section class="filtros-pagos">
 
+    <label for="filtro-fecha">
+        Fecha:
+        <input type="date" id="filtro-fecha">
+    </label>
+
+    <label for="filtro-estado">
+        Estado:
+        <select id="filtro-estado">
+            <option value="">Todos</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="PAGADO">Pagado</option>
+        </select>
+    </label>
+
+</section>
+
+<table>
         <thead>
 
             <tr>

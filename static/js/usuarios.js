@@ -58,7 +58,7 @@ function mostrarUsuarios(listaUsuarios) {
         fila.appendChild(celdaTelefono);
 
         const celdaRol = document.createElement("td");
-        celdaRol.textContent = usuario.usua_rol;
+        celdaRol.textContent = usuario.usua_rol_desc;
         fila.appendChild(celdaRol);
 
         const celdaEstado = document.createElement("td");

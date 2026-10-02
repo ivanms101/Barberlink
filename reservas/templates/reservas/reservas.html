@@ -22,14 +22,35 @@
 {% endblock %}
 
 {% block contenido %}
+<h1>Reservas</h1>
 
-    <h1>Reservas</h1>
+<a href="{% url 'crear_reserva_pagina' %}">
+    Crear reserva
+</a>
 
-    <a href="{% url 'crear_reserva_pagina' %}">
-        Crear reserva
-    </a>
+<section class="filtros-reservas">
 
-    <div id="contenedor-reservas">
+    <label for="filtro-fecha">
+        Fecha:
+        <input
+            type="date"
+            id="filtro-fecha"
+        >
+    </label>
+
+    <label for="filtro-estado">
+        Estado:
+        <select id="filtro-estado">
+            <option value="">Todos</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="FINALIZADA">Finalizada</option>
+            <option value="CANCELADA">Cancelada</option>
+        </select>
+    </label>
+
+</section>
+
+<div id="contenedor-reservas">
 
         <table id="tabla-reservas">
 

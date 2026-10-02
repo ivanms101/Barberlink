@@ -1,5 +1,6 @@
 console.log("reservas_lista.js funcionando");
 
+let reservas = [];
 let reservaReagendar = null;
 let horaReagendar = null;
 
@@ -25,101 +26,153 @@ function cargarReservas() {
 
             console.log("Reservas recibidas:", data);
 
-            const lista = document.getElementById("lista-reservas");
+            reservas = data;
 
-            lista.innerHTML = "";
+            filtrarReservas();
+        })
+        .catch(error => {
 
-            data.forEach(reserva => {
-
-                const fila = document.createElement("tr");
-
-                const acciones = document.createElement("td");
-
-                if (reserva.estado === "PENDIENTE") {
-
-                    if (
-                        rolUsuario === "admin" ||
-                        rolUsuario === "manage" ||
-                        rolUsuario === "assist" ||
-                        rolUsuario === "usua"
-                    ) {
-
-                        const botonReagendar =
-                            document.createElement("button");
-
-                        botonReagendar.textContent = "Reagendar";
-
-                        botonReagendar.addEventListener(
-                            "click",
-                            function () {
-
-                                abrirPanelReagendar(reserva);
-                            }
-                        );
-
-                        acciones.appendChild(botonReagendar);
-                    }
-
-                    if (
-                        rolUsuario === "admin" ||
-                        rolUsuario === "manage" ||
-                        rolUsuario === "assist" ||
-                        rolUsuario === "usua"
-                    ) {
-
-                        const botonCancelar =
-                            document.createElement("button");
-
-                        botonCancelar.textContent = "Cancelar";
-
-                        botonCancelar.addEventListener(
-                            "click",
-                            function () {
-
-                                cancelarReserva(reserva.id);
-                            }
-                        );
-
-                        acciones.appendChild(botonCancelar);
-                    }
-
-                    if (
-                        rolUsuario === "admin" ||
-                        rolUsuario === "manage" ||
-                        rolUsuario === "assist"
-                    ) {
-
-                        const botonFinalizar =
-                            document.createElement("button");
-
-                        botonFinalizar.textContent = "Finalizar";
-
-                        botonFinalizar.addEventListener(
-                            "click",
-                            function () {
-
-                                finalizarReserva(reserva.id);
-                            }
-                        );
-
-                        acciones.appendChild(botonFinalizar);
-                    }
-                }
-
-                fila.innerHTML = `
-                    <td>${reserva.cliente.usua_nomb}</td>
-                    <td>${reserva.servicio.serv_nomb}</td>
-                    <td>${reserva.barbero.usua_nomb}</td>
-                    <td>${reserva.fecha}</td>
-                    <td>${reserva.hora}</td>
-                    <td>${reserva.estado}</td>
-                `;
-
-                fila.appendChild(acciones);
-
-                lista.appendChild(fila);
-            });
+            console.error(
+                "Error al cargar las reservas:",
+                error
+            );
         });
+}
+
+function filtrarReservas() {
+
+    const filtroFecha =
+        document.getElementById("filtro-fecha").value;
+
+    const filtroEstado =
+        document.getElementById("filtro-estado").value;
+
+    const reservasFiltradas = reservas.filter(
+        reserva => {
+
+            const coincideFecha =
+                !filtroFecha ||
+                reserva.fecha === filtroFecha;
+
+            const coincideEstado =
+                !filtroEstado ||
+                reserva.estado === filtroEstado;
+
+            return coincideFecha && coincideEstado;
+        }
+    );
+
+    mostrarReservas(reservasFiltradas);
+}
+
+function mostrarReservas(listaReservas) {
+
+    const lista =
+        document.getElementById("lista-reservas");
+
+    lista.innerHTML = "";
+
+    listaReservas.forEach(reserva => {
+
+        const fila =
+            document.createElement("tr");
+
+        const acciones =
+            document.createElement("td");
+
+        if (reserva.estado === "PENDIENTE") {
+
+            if (
+                rolUsuario === "admin" ||
+                rolUsuario === "manage" ||
+                rolUsuario === "assist" ||
+                rolUsuario === "usua"
+            ) {
+
+                const botonReagendar =
+                    document.createElement("button");
+
+                botonReagendar.textContent =
+                    "Reagendar";
+
+                botonReagendar.addEventListener(
+                    "click",
+                    function () {
+
+                        abrirPanelReagendar(reserva);
+                    }
+                );
+
+                acciones.appendChild(
+                    botonReagendar
+                );
+            }
+
+            if (
+                rolUsuario === "admin" ||
+                rolUsuario === "manage" ||
+                rolUsuario === "assist" ||
+                rolUsuario === "usua"
+            ) {
+
+                const botonCancelar =
+                    document.createElement("button");
+
+                botonCancelar.textContent =
+                    "Cancelar";
+
+                botonCancelar.addEventListener(
+                    "click",
+                    function () {
+
+                        cancelarReserva(reserva.id);
+                    }
+                );
+
+                acciones.appendChild(
+                    botonCancelar
+                );
+            }
+
+            if (
+                rolUsuario === "admin" ||
+                rolUsuario === "manage" ||
+                rolUsuario === "assist"
+            ) {
+
+                const botonFinalizar =
+                    document.createElement("button");
+
+                botonFinalizar.textContent =
+                    "Finalizar";
+
+                botonFinalizar.addEventListener(
+                    "click",
+                    function () {
+
+                        finalizarReserva(reserva.id);
+                    }
+                );
+
+                acciones.appendChild(
+                    botonFinalizar
+                );
+            }
+        }
+
+        fila.innerHTML = `
+            <td>${reserva.cliente.usua_nomb}</td>
+            <td>${reserva.servicio.serv_nomb}</td>
+            <td>${reserva.barbero.usua_nomb}</td>
+            <td>${reserva.fecha}</td>
+            <td>${reserva.hora}</td>
+            <td>${reserva.estado}</td>
+        `;
+
+        fila.appendChild(acciones);
+
+        lista.appendChild(fila);
+    });
 }
 
 function cancelarReserva(reservaId) {
@@ -132,12 +185,15 @@ function cancelarReserva(reservaId) {
         return;
     }
 
-    fetch(`/reservas/api/reservas/${reservaId}/cancelar/`, {
-        method: "PATCH",
-        headers: {
-            "X-CSRFToken": obtenerCsrfToken()
+    fetch(
+        `/reservas/api/reservas/${reservaId}/cancelar/`,
+        {
+            method: "PATCH",
+            headers: {
+                "X-CSRFToken": obtenerCsrfToken()
+            }
         }
-    })
+    )
         .then(response => response.json())
         .then(data => {
 
@@ -166,12 +222,15 @@ function finalizarReserva(reservaId) {
         return;
     }
 
-    fetch(`/reservas/api/reservas/${reservaId}/finalizar/`, {
-        method: "PATCH",
-        headers: {
-            "X-CSRFToken": obtenerCsrfToken()
+    fetch(
+        `/reservas/api/reservas/${reservaId}/finalizar/`,
+        {
+            method: "PATCH",
+            headers: {
+                "X-CSRFToken": obtenerCsrfToken()
+            }
         }
-    })
+    )
         .then(response => response.json())
         .then(data => {
 
@@ -181,12 +240,16 @@ function finalizarReserva(reservaId) {
             );
 
             if (data.reserva_id) {
+
                 cargarReservas();
+
                 return;
             }
 
             if (data.error) {
+
                 alert(data.error);
+
                 return;
             }
 
@@ -218,9 +281,16 @@ function abrirPanelReagendar(reserva) {
     );
 
     const panel =
-        document.getElementById("panel-reagendar");
+        document.getElementById(
+            "panel-reagendar"
+        );
 
     panel.style.display = "block";
+
+    panel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 
     document.getElementById(
         "reagendar-cliente"
@@ -529,6 +599,26 @@ function cerrarPanelReagendar() {
         "reagendar-hora"
     ).textContent = "";
 }
+
+document
+    .getElementById("filtro-fecha")
+    .addEventListener(
+        "change",
+        function () {
+
+            filtrarReservas();
+        }
+    );
+
+document
+    .getElementById("filtro-estado")
+    .addEventListener(
+        "change",
+        function () {
+
+            filtrarReservas();
+        }
+    );
 
 document
     .getElementById("reagendar-barbero")

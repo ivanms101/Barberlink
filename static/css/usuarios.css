@@ -1,57 +1,316 @@
-*{
-    box-sizing: border-box;
+/* ==============================
+   Encabezado de la página
+   ============================== */
+
+.contenido > h1 {
+    margin: 0 0 26px;
+    color: var(--color-texto);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
 }
 
-body{
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+
+/* ==============================
+   Filtros
+   ============================== */
+
+.filtros-usuarios {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 20px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
 }
 
-table{
-    width:100%;
-    border-collapse: collapse;
+.filtros-usuarios label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-texto);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
-th, td{
-    padding: 12px;
+.filtros-usuarios input,
+.filtros-usuarios select {
+    height: 42px;
+    min-width: 190px;
+    padding: 0 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.filtros-usuarios input:focus,
+.filtros-usuarios select:focus {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 3px rgba(22, 131, 245, 0.12);
+}
+
+.filtros-usuarios input {
+    min-width: 240px;
+}
+
+.filtros-usuarios select {
+    cursor: pointer;
+}
+
+
+/* ==============================
+   Tabla
+   ============================== */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+th,
+td {
+    padding: 14px 16px;
     text-align: left;
-    border-bottom: 1px solid #d1d5db;
+    border-bottom: 1px solid var(--color-borde);
+    font-size: 14px;
 }
 
-th{
-    background-color: #1f2937;
-    color: white;
-    font-weight: normal;
+th {
+    background-color: #f4f7fb;
+    color: var(--color-texto);
+    font-size: 12px;
+    font-weight: 650;
+    letter-spacing: 0.4px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-tbody tr:hover{
-    background-color: #f3f4f6;
+td {
+    color: var(--color-texto-secundario);
 }
 
-.volver-btn{
-    display: inline-block;
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+    background-color: #f8fbff;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==============================
+   Columna Estado
+   ============================== */
+
+tbody td:nth-child(7) {
+    text-align: center;
+}
+
+
+/* ==============================
+   Botón Cambiar estado
+   ============================== */
+
+tbody td button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 6px 11px;
+    border: 1px solid var(--color-borde);
+    border-radius: 7px;
+    background-color: #f4f7fb;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+tbody td button:hover {
+    background-color: var(--color-azul-suave);
+    border-color: #b9d9f7;
+    color: var(--color-azul-hover);
+}
+
+
+/* ==============================
+   Columna Acciones
+   ============================== */
+
+tbody td:last-child {
+    text-align: center;
+}
+
+tbody td:last-child a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    margin: 2px;
+    padding: 6px 11px;
+    border: 1px solid var(--color-borde);
+    border-radius: 7px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+tbody td:last-child a:hover {
+    background-color: var(--color-azul-suave);
+    border-color: #b9d9f7;
+    color: var(--color-azul-hover);
+    transform: translateY(-1px);
+}
+
+
+/* ==============================
+   Botón Crear usuario
+   ============================== */
+
+.crear_usuario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin: 0 0 20px;
+    padding: 10px 18px;
+    border: 1px solid var(--color-azul);
+    border-radius: 9px;
+    background-color: var(--color-azul);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.crear_usuario:hover {
+    background-color: var(--color-azul-hover);
+    border-color: var(--color-azul-hover);
+    box-shadow: 0 6px 16px rgba(22, 131, 245, 0.18);
+    transform: translateY(-1px);
+}
+
+.crear_usuario:active {
+    transform: translateY(0);
+}
+
+
+/* ==============================
+   Botón Volver
+   ============================== */
+
+.volver-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 20px;
-    padding: 8px 14px;
-    text-decoration: none;
-    background-color: #1f2937;
-    color: white;
-    border-radius: 6px;
-}
-
-.volver-btn:hover{
-    background-color: #374151;
-}
-
-.crear_usuario{
-    display: inline-block;
-    margin: 15px 0 20px 0;
     padding: 10px 16px;
+    border: 1px solid var(--color-borde);
+    border-radius: 9px;
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
-    background-color: #1f2937;
-    color: white;
-    border-radius: 6px;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
 }
 
-.crear_usuario:hover{
-    background-color: #374151;
+.volver-btn:hover {
+    background-color: #f4f7fb;
+    border-color: #cbd7e4;
+}
+
+
+/* ==============================
+   Adaptación para pantallas
+   ============================== */
+
+@media (max-width: 1050px) {
+
+    .filtros-usuarios {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .filtros-usuarios input,
+    .filtros-usuarios select {
+        min-width: 180px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .contenido > h1 {
+        font-size: 26px;
+    }
+
+    .filtros-usuarios {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .filtros-usuarios label {
+        width: 100%;
+        align-items: center;
+    }
+
+    .filtros-usuarios input,
+    .filtros-usuarios select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .crear_usuario {
+        width: 100%;
+    }
 }

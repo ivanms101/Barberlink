@@ -1,0 +1,173 @@
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.contenido > h1 {
+    margin: 0 0 28px;
+    color: var(--color-texto);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+#form-editar-servicio {
+    width: 100%;
+    max-width: 560px;
+    padding: 32px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+#form-editar-servicio label {
+    display: block;
+    margin-top: 18px;
+    color: var(--color-texto);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#form-editar-servicio label:first-of-type {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+#form-editar-servicio input {
+    width: 100%;
+    height: 46px;
+    margin-top: 7px;
+    padding: 0 13px;
+    border: 1px solid var(--color-borde);
+    border-radius: 9px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+#form-editar-servicio input:focus {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 3px rgba(22, 131, 245, .12);
+}
+
+
+/* =========================================================
+   MENSAJE DE ERROR
+   ========================================================= */
+
+#mensaje-error {
+    margin: 18px 0 0;
+    padding: 12px 14px;
+    border: 1px solid #fecaca;
+    border-radius: 9px;
+    background-color: #fff1f2;
+    color: #b91c1c;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+#mensaje-error:empty {
+    display: none;
+}
+
+
+/* =========================================================
+   BOTÓN GUARDAR
+   ========================================================= */
+
+#form-editar-servicio button {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 24px;
+    padding: 10px 18px;
+    border: 1px solid var(--color-azul);
+    border-radius: 9px;
+    background-color: var(--color-azul);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+#form-editar-servicio button:hover {
+    background-color: var(--color-azul-hover);
+    border-color: var(--color-azul-hover);
+    box-shadow: 0 7px 18px rgba(22, 131, 245, .20);
+    transform: translateY(-1px);
+}
+
+#form-editar-servicio button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   VOLVER
+   ========================================================= */
+
+.volver {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    margin-top: 20px;
+    padding: 9px 16px;
+    border: 1px solid var(--color-borde);
+    border-radius: 9px;
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+}
+
+.volver:hover {
+    background-color: #f4f7fb;
+    border-color: #cbd7e4;
+    color: var(--color-texto);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .contenido > h1 {
+        font-size: 26px;
+    }
+
+    #form-editar-servicio {
+        padding: 24px;
+    }
+
+    .volver {
+        width: 100%;
+    }
+}

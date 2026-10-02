@@ -3,6 +3,7 @@ from .models import Usuario, Rol
 
 class UsuarioSerializer(serializers.ModelSerializer):
     usua_activo = serializers.BooleanField(read_only=True)
+    usua_rol_desc = serializers.CharField(source="usua_rol.rol_desc", read_only=True)
     class Meta:
         model = Usuario
         fields = [
@@ -13,6 +14,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
             "usua_tel",
             "usua_cor",
             "usua_rol",
+            "usua_rol_desc",
             "usua_activo",
         ]
 

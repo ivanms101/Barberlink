@@ -1,34 +1,452 @@
-* {
-    box-sizing: border-box;
+.contenido > h1 {
+    margin: 0 0 22px;
+    color: var(--color-texto);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
+/* =========================================================
+   BOTÓN CREAR RESERVA
+   ========================================================= */
 
-.contenedor-reserva{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.contenedor-reserva section{
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-.volver {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 8px 14px;
+.contenido > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-bottom: 24px;
+    padding: 10px 18px;
+    border: 1px solid var(--color-azul);
+    border-radius: 9px;
+    background-color: var(--color-azul);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
-    background-color: #1f2937;
-    color: white;
-    border-radius: 6px;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
-.volver:hover {
-    background-color: #374151;
+.contenido > a:hover {
+    background-color: var(--color-azul-hover);
+    border-color: var(--color-azul-hover);
+    box-shadow: 0 6px 16px rgba(22, 131, 245, .18);
+    transform: translateY(-1px);
+}
+
+.contenido > a:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   FILTROS DE RESERVAS
+   ========================================================= */
+
+.filtros-reservas {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding: 20px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+.filtros-reservas label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-texto);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.filtros-reservas input,
+.filtros-reservas select {
+    height: 42px;
+    min-width: 190px;
+    padding: 0 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.filtros-reservas input:focus,
+.filtros-reservas select:focus {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 3px rgba(22, 131, 245, .12);
+}
+
+.filtros-reservas input {
+    min-width: 180px;
+}
+
+.filtros-reservas select {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TABLA DE RESERVAS
+   ========================================================= */
+
+#contenedor-reservas {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#tabla-reservas {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+#tabla-reservas th,
+#tabla-reservas td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-borde);
+    font-size: 14px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+#tabla-reservas th {
+    background-color: #f4f7fb;
+    color: var(--color-texto);
+    font-size: 12px;
+    font-weight: 650;
+    letter-spacing: .4px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#tabla-reservas td {
+    color: var(--color-texto-secundario);
+}
+
+#tabla-reservas tbody tr {
+    transition: background-color .15s ease;
+}
+
+#tabla-reservas tbody tr:hover {
+    background-color: #f8fbff;
+}
+
+#tabla-reservas tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#tabla-reservas td:last-child {
+    text-align: center;
+}
+
+
+/* =========================================================
+   ACCIONES DE LA TABLA
+   ========================================================= */
+
+#tabla-reservas td:last-child button,
+#tabla-reservas td:last-child a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    margin: 2px;
+    padding: 6px 11px;
+    border: 1px solid var(--color-borde);
+    border-radius: 7px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+#tabla-reservas td:last-child button:hover,
+#tabla-reservas td:last-child a:hover {
+    background-color: var(--color-azul-suave);
+    border-color: #b9d9f7;
+    color: var(--color-azul-hover);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PANEL DE REAGENDAMIENTO
+   ========================================================= */
+
+#panel-reagendar {
+    width: 100%;
+    max-width: 620px;
+    margin-top: 30px;
+    padding: 30px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+#panel-reagendar h2 {
+    margin: 0 0 24px;
+    color: var(--color-texto);
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: -.3px;
+}
+
+#panel-reagendar h3 {
+    margin: 24px 0 12px;
+    color: var(--color-texto);
+    font-size: 16px;
+    font-weight: 650;
+}
+
+#panel-reagendar > p {
+    margin: 8px 0;
+    color: var(--color-texto-secundario);
+    font-size: 14px;
+}
+
+#panel-reagendar > p span {
+    color: var(--color-texto);
+    font-weight: 600;
+}
+
+#panel-reagendar > div {
+    margin-top: 20px;
+}
+
+#panel-reagendar label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--color-texto);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#panel-reagendar select,
+#panel-reagendar input[type="date"] {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px;
+    border: 1px solid var(--color-borde);
+    border-radius: 9px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+#panel-reagendar select {
+    cursor: pointer;
+}
+
+#panel-reagendar select:focus,
+#panel-reagendar input[type="date"]:focus {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 3px rgba(22, 131, 245, .12);
+}
+
+
+/* =========================================================
+   HORARIOS DISPONIBLES
+   ========================================================= */
+
+#reagendar-horarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+#reagendar-horarios button {
+    min-width: 78px;
+    min-height: 38px;
+    padding: 8px 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+#reagendar-horarios button:hover {
+    background-color: var(--color-azul-suave);
+    border-color: #b9d9f7;
+    color: var(--color-azul-hover);
+    transform: translateY(-1px);
+}
+
+#reagendar-horarios button.seleccionado {
+    background-color: var(--color-azul);
+    border-color: var(--color-azul);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   HORA SELECCIONADA
+   ========================================================= */
+
+#panel-reagendar > div > p {
+    margin: 0;
+    color: var(--color-texto-secundario);
+    font-size: 14px;
+}
+
+#reagendar-hora {
+    color: var(--color-texto);
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BOTONES DEL PANEL
+   ========================================================= */
+
+#guardar-reagendamiento,
+#cancelar-reagendamiento {
+    min-height: 44px;
+    margin-top: 24px;
+    padding: 10px 18px;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+#guardar-reagendamiento {
+    border: 1px solid var(--color-azul);
+    background-color: var(--color-azul);
+    color: #ffffff;
+}
+
+#guardar-reagendamiento:hover {
+    background-color: var(--color-azul-hover);
+    border-color: var(--color-azul-hover);
+    box-shadow: 0 6px 16px rgba(22, 131, 245, .18);
+    transform: translateY(-1px);
+}
+
+#cancelar-reagendamiento {
+    margin-left: 8px;
+    border: 1px solid var(--color-borde);
+    background-color: #ffffff;
+    color: var(--color-texto);
+}
+
+#cancelar-reagendamiento:hover {
+    background-color: #f4f7fb;
+    border-color: #cbd7e4;
+    transform: translateY(-1px);
+}
+
+#guardar-reagendamiento:active,
+#cancelar-reagendamiento:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .filtros-reservas {
+        flex-wrap: wrap;
+    }
+
+    #tabla-reservas {
+        min-width: 850px;
+    }
+
+    #panel-reagendar {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .contenido > h1 {
+        font-size: 26px;
+    }
+
+    .filtros-reservas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .filtros-reservas label {
+        width: 100%;
+        align-items: center;
+    }
+
+    .filtros-reservas input,
+    .filtros-reservas select {
+        flex: 1;
+        min-width: 0;
+    }
+
+    #panel-reagendar {
+        padding: 24px;
+    }
+
+    #guardar-reagendamiento,
+    #cancelar-reagendamiento {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #cancelar-reagendamiento {
+        margin-top: 10px;
+    }
 }

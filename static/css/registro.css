@@ -35,14 +35,14 @@ body {
 
 
 /* =========================================
-   CONTENEDOR LOGIN
+   CONTENEDOR
    ========================================= */
 
-.contenedor-login {
+.contenedor-registro {
     width: 100%;
-    max-width: 440px;
+    max-width: 560px;
 
-    padding: 42px;
+    padding: 40px 44px;
 
     background-color: #ffffff;
 
@@ -58,8 +58,8 @@ body {
    TÍTULO
    ========================================= */
 
-.contenedor-login h1 {
-    margin: 0 0 32px;
+.contenedor-registro h1 {
+    margin: 0 0 30px;
 
     color: #142238;
 
@@ -71,13 +71,21 @@ body {
 
 
 /* =========================================
+   FORMULARIO
+   ========================================= */
+
+.contenedor-registro form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================
    ETIQUETAS
    ========================================= */
 
-.contenedor-login label {
-    display: block;
-
-    margin-top: 18px;
+.contenedor-registro label {
+    margin-top: 17px;
 
     color: #26384f;
 
@@ -90,10 +98,11 @@ body {
    CAMPOS
    ========================================= */
 
-.contenedor-login input {
+.contenedor-registro input,
+.contenedor-registro select {
     width: 100%;
 
-    height: 48px;
+    height: 46px;
 
     margin-top: 7px;
     padding: 0 14px;
@@ -116,12 +125,8 @@ body {
 }
 
 
-.contenedor-login input::placeholder {
-    color: #94a3b8;
-}
-
-
-.contenedor-login input:focus {
+.contenedor-registro input:focus,
+.contenedor-registro select:focus {
     border-color: #1683f5;
 
     box-shadow:
@@ -130,11 +135,32 @@ body {
 
 
 /* =========================================
-   SALTOS DEL HTML ACTUAL
+   SELECT
    ========================================= */
 
-.contenedor-login br {
-    display: none;
+.contenedor-registro select {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   MENSAJE DE ERROR
+   ========================================= */
+
+#mensaje-error {
+    margin:18px 0 0;
+    padding:12px 14px;
+    border:1px solid #fecaca;
+    border-radius:9px;
+    background-color:#fff1f2;
+    color:#b91c1c;
+    font-size:14px;
+    line-height:1.4;
+    text-align:center;
+}
+
+#mensaje-error:empty {
+    display:none;
 }
 
 
@@ -142,12 +168,12 @@ body {
    BOTÓN
    ========================================= */
 
-.contenedor-login button {
+.contenedor-registro button {
     width: 100%;
 
     height: 48px;
 
-    margin-top: 28px;
+    margin-top: 24px;
 
     border: none;
     border-radius: 9px;
@@ -169,7 +195,7 @@ body {
 }
 
 
-.contenedor-login button:hover {
+.contenedor-registro button:hover {
     background-color: #0d6fd8;
 
     box-shadow:
@@ -179,16 +205,16 @@ body {
 }
 
 
-.contenedor-login button:active {
+.contenedor-registro button:active {
     transform: translateY(0);
 }
 
 
 /* =========================================
-   REGISTRO
+   ENLACE LOGIN
    ========================================= */
 
-.contenedor-login > a {
+.contenedor-registro > a {
     display: block;
 
     margin-top: 22px;
@@ -206,7 +232,7 @@ body {
 }
 
 
-.contenedor-login > a:hover {
+.contenedor-registro > a:hover {
     color: #0d6fd8;
 
     text-decoration: underline;
@@ -214,46 +240,38 @@ body {
 
 
 /* =========================================
-   MENSAJE DE ERROR
-   ========================================= */
-
-.error {
-    margin: 0 0 20px;
-
-    padding: 12px 14px;
-
-    border: 1px solid #fecaca;
-    border-radius: 9px;
-
-    background-color: #fff1f2;
-
-    color: #b91c1c;
-
-    font-size: 14px;
-    line-height: 1.4;
-
-    text-align: center;
-}
-
-
-/* =========================================
    RESPONSIVE
    ========================================= */
 
-@media (max-width: 520px) {
+@media (max-width: 620px) {
 
     body {
         padding: 20px;
     }
 
-    .contenedor-login {
+    .contenedor-registro {
         padding: 30px 24px;
 
         border-radius: 13px;
     }
 
-    .contenedor-login h1 {
+    .contenedor-registro h1 {
         font-size: 28px;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .contenedor-registro {
+        padding: 26px 20px;
+
+        border-radius: 11px;
     }
 
 }
